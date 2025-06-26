@@ -4,21 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.qubitpi.athena</groupId>
-    <artifactId>athena-parent-pom</artifactId>
+    <groupId>io.github.qubitpi.ostwind</groupId>
+    <artifactId>ostwind-parent-pom</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Athena: Parent POM</name>
+    <name>Ostwind: Parent POM</name>
     <description>A GraphQL Object Storage Webservice Backed by OpenStack Swift and Hadoop HDFS</description>
-    <url>https://github.com/QubitPi/athena</url>
+    <url>https://github.com/QubitPi/Ostwind</url>
 
     <modules>
-        <module>athena-core</module>
-        <module>athena-filestore</module>
-        <module>athena-metastore</module>
-        <module>athena-system-config</module>
-        <module>athena-examples</module>
+        <module>ostwind-core</module>
+        <module>ostwind-filestore</module>
+        <module>ostwind-metastore</module>
+        <module>ostwind-system-config</module>
+        <module>ostwind-examples</module>
     </modules>
 
     <developers>
@@ -37,8 +37,8 @@
     </licenses>
 
     <scm>
-        <developerConnection>scm:git:ssh://git@github.com/QubitPi/athena.git</developerConnection>
-        <url>https://github.com/QubitPi/athena.git</url>
+        <developerConnection>scm:git:ssh://git@github.com/QubitPi/Ostwind.git</developerConnection>
+        <url>https://github.com/QubitPi/Ostwind.git</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -47,7 +47,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.athena>1.0-SNAPSHOT</version.athena>
+        <version.ostwind>1.0-SNAPSHOT</version.ostwind>
 
         <checkstyle.skip>false</checkstyle.skip>
         <checkstyle.resourceIncludes>**/*.properties*</checkstyle.resourceIncludes>
@@ -60,34 +60,34 @@
         <dependencies>
             <!-- Local module dependencies -->
             <dependency>
-                <groupId>io.github.qubitpi.athena</groupId>
-                <artifactId>athena-core</artifactId>
-                <version>${version.athena}</version>
+                <groupId>io.github.qubitpi.ostwind</groupId>
+                <artifactId>ostwind-core</artifactId>
+                <version>${version.ostwind}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.qubitpi.athena</groupId>
-                <artifactId>athena-filestore</artifactId>
-                <version>${version.athena}</version>
+                <groupId>io.github.qubitpi.ostwind</groupId>
+                <artifactId>ostwind-filestore</artifactId>
+                <version>${version.ostwind}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.qubitpi.athena</groupId>
-                <artifactId>athena-filestore-swift</artifactId>
-                <version>${version.athena}</version>
+                <groupId>io.github.qubitpi.ostwind</groupId>
+                <artifactId>ostwind-filestore-swift</artifactId>
+                <version>${version.ostwind}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.qubitpi.athena</groupId>
-                <artifactId>athena-metastore</artifactId>
-                <version>${version.athena}</version>
+                <groupId>io.github.qubitpi.ostwind</groupId>
+                <artifactId>ostwind-metastore</artifactId>
+                <version>${version.ostwind}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.qubitpi.athena</groupId>
-                <artifactId>athena-metastore-graphql</artifactId>
-                <version>${version.athena}</version>
+                <groupId>io.github.qubitpi.ostwind</groupId>
+                <artifactId>ostwind-metastore-graphql</artifactId>
+                <version>${version.ostwind}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.qubitpi.athena</groupId>
-                <artifactId>athena-system-config</artifactId>
-                <version>${version.athena}</version>
+                <groupId>io.github.qubitpi.ostwind</groupId>
+                <artifactId>ostwind-system-config</artifactId>
+                <version>${version.ostwind}</version>
             </dependency>
 
             <dependency>

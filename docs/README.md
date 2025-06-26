@@ -12,7 +12,7 @@
 [//]: # (See the License for the specific language governing permissions and)
 [//]: # (limitations under the License.)
 
-Athena Documentation
+Ostwind Documentation
 --------------------
 
 This website is built using [Docusaurus 3](https://docusaurus.io/), a modern static website generator.
@@ -49,4 +49,4 @@ Using SSH:
 USE_SSH=true yarn deploy
 ```
 
-Athena is using GitHub pages for hosting, this command builds the website and push to the `gh-pages` branch.
+Ostwind is using GitHub pages for hosting, this command builds the website and push to the `gh-pages` branch.

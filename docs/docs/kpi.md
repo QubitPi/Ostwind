@@ -1,5 +1,5 @@
 ---
-title: Key Performance Indicators - Athena Web Service
+title: Key Performance Indicators - Ostwind Web Service
 sidebar_position: 7
 ---
 
@@ -17,7 +17,7 @@ sidebar_position: 7
 [//]: # (See the License for the specific language governing permissions and)
 [//]: # (limitations under the License.)
 
-These are the key performance indicators for the Athena Web Service component, listed in categories by order of
+These are the key performance indicators for the Ostwind Web Service component, listed in categories by order of
 importance.
 
 Server Error Responses (HTTP 5XX)

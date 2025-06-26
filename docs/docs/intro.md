@@ -3,80 +3,80 @@ title: Getting Started
 sidebar_position: 1
 ---
 
-The easiest way to get started with Athena is to use the [Athena Book App Starter]. The starter bundles all of the
+The easiest way to get started with Ostwind is to use the [Ostwind Book App Starter]. The starter bundles all of the
 dependencies we will need to stand up a web service. This tutorial uses the starter, and all of the code is
-[available here][Athena Book App Starter]. We will deploy and play with this example locally
+[available here][Ostwind Book App Starter]. We will deploy and play with this example locally
 
 Docker Compose
 --------------
 
-Athena Compose is a tool for setting up and running a full-fledged Athena instance Docker application. With Compose,
-an Athena application is backed by a real MySQL meta store and an in-memory OpenStack Swift service. With a single
-command, we will be able to create and start all the services from Athena. **It's the quickest approach to get a taste
-of Athena**.
+Ostwind Compose is a tool for setting up and running a full-fledged Ostwind instance Docker application. With Compose,
+an Ostwind application is backed by a real MySQL meta store and an in-memory OpenStack Swift service. With a single
+command, we will be able to create and start all the services from Ostwind. **It's the quickest approach to get a taste
+of Ostwind**.
 
-Athena Compose works in all environments: production, staging, development, testing, as well as CI workflows. You can
-learn more about it from [source code][Athena Book App Starter].
+Ostwind Compose works in all environments: production, staging, development, testing, as well as CI workflows. You can
+learn more about it from [source code][Ostwind Book App Starter].
 
-Using Athena Compose is basically a three-step process:
+Using Ostwind Compose is basically a three-step process:
 
-1. Package Athena at project root with `mvn clean package`
-2. cd into [compose top directory][Athena Book App Starter] and fire-up `docker compose up`
-3. hit Athena at `http://localhost:8080/v1/metadata/graphql?query={metaData(fileId:%221%22){fileName}}` with your favorite
+1. Package Ostwind at project root with `mvn clean package`
+2. cd into [compose top directory][Ostwind Book App Starter] and fire-up `docker compose up`
+3. hit Ostwind at `http://localhost:8080/v1/metadata/graphql?query={metaData(fileId:%221%22){fileName}}` with your favorite
    browser
 
-For more information about the Athena Compose the [Compose file definition][Athena Book App Starter].
+For more information about the Ostwind Compose the [Compose file definition][Ostwind Book App Starter].
 
-Athena Compose has ability for managing the whole lifecycle of an Athena application:
+Ostwind Compose has ability for managing the whole lifecycle of an Ostwind application:
 
 - Start, stop, and rebuild services
 - View the status of running services
 - Stream the log output of running services
 - Run a one-off command on a service
 
-### Extending Athena Compose
+### Extending Ostwind Compose
 
-Happy with Athena? You can go further with productionizing Athena from
+Happy with Ostwind? You can go further with productionizing Ostwind from
 here <img src="https://user-images.githubusercontent.com/16126939/174438007-b9adae25-baf8-42a7-bf39-83786435d397.gif" width="40"/>
 
 :::tip
 
-Athena also comes with
-[an example acceptance testing module](https://github.com/QubitPi/athena/tree/master/athena-examples/athena-example-acceptance-tests)
+Ostwind also comes with
+[an example acceptance testing module](https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-acceptance-tests)
 which can be pull out separately for our own project needs.
 
 :::
 
-If you would like to go from basic Athena Compose setup and changed anything, rebuild it with
+If you would like to go from basic Ostwind Compose setup and changed anything, rebuild it with
 
 ```bash
 docker compose up --build --force-recreate
 ```
 
-Athena Compose has been tested with [MySQL 5.7](https://hub.docker.com/_/mysql) connected using
-_mysql-connector-java 5.1.38_ within Athena running on
+Ostwind Compose has been tested with [MySQL 5.7](https://hub.docker.com/_/mysql) connected using
+_mysql-connector-java 5.1.38_ within Ostwind running on
 [Jetty 11.0.15](https://download.eclipse.org/oomph/jetty/release/11.0.15/).
 
 :::warning
 
-Please take extra caution with MySQL 8, as some of the features might not work properly on Athena Compose. In
+Please take extra caution with MySQL 8, as some of the features might not work properly on Ostwind Compose. In
 addition, make sure `?autoReconnect=true&useSSL=false` is in connection string. For example,
-`jdbc:mysql://db:3306/Athena?autoReconnect=true&useSSL=false`
+`jdbc:mysql://db:3306/Ostwind?autoReconnect=true&useSSL=false`
 
 :::
 
 ### MySQL Container (Meta Store)
 
-Athena Compose uses MySQL 5 as the backing meta store, i.e. the database that DataFetcher is talking to for file
+Ostwind Compose uses MySQL 5 as the backing meta store, i.e. the database that DataFetcher is talking to for file
 metadata.
 
 The MySQL instance is network-reachable at 3306 inside compose and 3305 for host (wo choose 3305 just in case 3306 has
 already been occupied)
 
-### Networking in Athena Compose
+### Networking in Ostwind Compose
 
-By default Athena Compose sets up a single
-[network](https://docs.docker.com/engine/reference/commandline/network_create/). Both Athena and MySQL container
+By default Ostwind Compose sets up a single
+[network](https://docs.docker.com/engine/reference/commandline/network_create/). Both Ostwind and MySQL container
 services join this default network and is both reachable by other containers on that network, and discoverable by them
 at a hostname identical to the container name.
 
@@ -107,10 +107,10 @@ services:
 
 When you run docker compose up, the following happens:
 
-- A network called "athena-example-books" is created.
-- An Athena container is created using athena-example-books configuration. It joins the network "athena-example-books"
+- A network called "ostwind-example-books" is created.
+- An Ostwind container is created using ostwind-example-books configuration. It joins the network "ostwind-example-books"
   under the name "web".
-- An MySQL container is created using `db`'s configuration. It joins the network "athena-example-books" under the name
+- An MySQL container is created using `db`'s configuration. It joins the network "ostwind-example-books" under the name
   "db".
 
 Each container can now look up the hostname `web` or `db` and get back the appropriate container's IP address. For
@@ -121,17 +121,17 @@ Production
 
 ### Creating a Deployable War File
 
-We build the ".war" File first by navigating to athena project root and compile the project
+We build the ".war" File first by navigating to ostwind project root and compile the project
 
 ```bash
-cd athena/
+cd ostwind/
 mvn clean package
 ```
 
 Successfully executing the command above shall generate a ".war" file under
-`athena/athena-examples/athena-example-books/target/athena-example-books-<athena-version>.war`, where is the version of
-the athena, for example `1.0.2`, please make sure to replace `<athena-version>` with one of
-[our release versions](https://central.sonatype.com/namespace/io.github.qubitpi.athena).
+`ostwind/ostwind-examples/ostwind-example-books/target/ostwind-example-books-<ostwind-version>.war`, where is the version of
+the ostwind, for example `1.0.2`, please make sure to replace `<ostwind-version>` with one of
+[our release versions](https://central.sonatype.com/namespace/io.github.qubitpi.ostwind).
 
 ### Setting Up Jetty
 
@@ -207,8 +207,8 @@ java -jar start.jar -Djetty.port=8081
 brew install --cask graphiql
 ```
 
-[Athena Book App Starter]: https://github.com/QubitPi/athena/tree/master/athena-examples/athena-example-books
+[Ostwind Book App Starter]: https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-books
 
-[docker-compose.yml]: https://github.com/QubitPi/athena/tree/master/athena-examples/athena-example-books/docker-compose.yml
-[athena-demo]: https://github.com/QubitPi/athena/tree/master/athena-examples/athena-example-books
+[docker-compose.yml]: https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-books/docker-compose.yml
+[ostwind-demo]: https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-books
 [swagger-ui]: https://swagger.io/tools/swagger-ui/

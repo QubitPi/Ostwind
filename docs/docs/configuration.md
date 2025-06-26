@@ -6,7 +6,7 @@ sidebar_position: 2
 Configuration
 =============
 
-The configuration for Athena is implemented using ResourceConfig class programmatically wires up dependencies with a
+The configuration for Ostwind is implemented using ResourceConfig class programmatically wires up dependencies with a
 [BinderFactory].
 
 The configuration does not expose all the settings that can be customized. Some requires overriding of the injected
@@ -68,8 +68,8 @@ Database
 A database should be initialized with:
 
 ```sql
-CREATE DATABASE IF NOT EXISTS Athena;
-USE Athena;
+CREATE DATABASE IF NOT EXISTS Ostwind;
+USE Ostwind;
 
 CREATE TABLE BOOK_META_DATA (
     id        int NOT NULL AUTO_INCREMENT,
@@ -80,12 +80,12 @@ CREATE TABLE BOOK_META_DATA (
 );
 ```
 
-[AbstractBinderFactory]: https://github.com/QubitPi/athena/blob/master/athena-core/src/main/java/io/github/qubitpi/athena/application/AbstractBinderFactory.java
+[AbstractBinderFactory]: https://github.com/QubitPi/Ostwind/blob/master/ostwind-core/src/main/java/io/github/qubitpi/ostwind/application/AbstractBinderFactory.java
 
-[BinderFactory]: https://athena.qubitpi.org/apidocs/io/github/qubitpi/athena/application/BinderFactory.html
+[BinderFactory]: https://ostwind.qubitpi.org/apidocs/io/github/qubitpi/ostwind/application/BinderFactory.html
 
 [DataFetcher]: https://graphql-java.qubitpi.org/documentation/data-fetching/
 
-[MetaStore]: https://athena.qubitpi.org/apidocs/io/github/qubitpi/athena/metastore/MetaStore.html
+[MetaStore]: https://ostwind.qubitpi.org/apidocs/io/github/qubitpi/ostwind/metastore/MetaStore.html
 
-[FileStore]: https://athena.qubitpi.org/apidocs/io/github/qubitpi/athena/filestore/FileStore.html
+[FileStore]: https://ostwind.qubitpi.org/apidocs/io/github/qubitpi/ostwind/filestore/FileStore.html

@@ -17,7 +17,7 @@ sidebar_position: 11
 [//]: # (See the License for the specific language governing permissions and)
 [//]: # (limitations under the License.)
 
-This is collection of terms related to Athena and its concepts.
+This is collection of terms related to Ostwind and its concepts.
 
 Application Concerns
 --------------------
@@ -39,7 +39,7 @@ well as easy to specify configuration in different environments.
 
 ### Request Log
 
-The Request Log is an extensible log line that Athena emits after a request has been handled and responded to. The data
+The Request Log is an extensible log line that Ostwind emits after a request has been handled and responded to. The data
 in this log line is built up as the request is processed and it includes information about nearly every phase of
 processing a request, including how long things took at both fine-grained and aggregate levels.
 
@@ -62,7 +62,7 @@ uses like testing.
 
 ### Servlet
 
-A Servlet is a Java construct that usually is designed to handle an HTTP request. For Athena, we also have a Servlet
+A Servlet is a Java construct that usually is designed to handle an HTTP request. For Ostwind, we also have a Servlet
 construct, and while it's similar to the Java construct, it's more akin to a Controller in other MVC web frameworks
 like Ruby on Rails or Grails.
 

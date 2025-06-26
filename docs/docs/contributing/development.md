@@ -17,30 +17,30 @@ sidebar_position: 1
 [//]: # (See the License for the specific language governing permissions and)
 [//]: # (limitations under the License.)
 
-Athena is developed in [Jersey](https://eclipse-ee4j.github.io/jersey/) framework.
+Ostwind is developed in [Jersey](https://eclipse-ee4j.github.io/jersey/) framework.
 
-**NOTE:** In case you are not familiar with Jersey, it is a parallel technology with "Spring Boot framework". **Athena
+**NOTE:** In case you are not familiar with Jersey, it is a parallel technology with "Spring Boot framework". **Ostwind
 offers absolutely NO support for Spring** and will remain as an exclusive Jersey application in the future, because
 Jersey, alone with its backing technology [HK2](https://javaee.github.io/hk2/), is the reference-implementation of
 JSR-370 (and HK2, JSR-330) _standards_ while Spring is not.
 
-By "having no support for Spring", Athena means the following:
+By "having no support for Spring", Ostwind means the following:
 
-1. Athena DOES NOT, AND WILL NOT, run as a Spring Boot Webservice
-2. Athena has ABSOLUTE ZERO direct-dependency from Spring
-3. Athena runs in NON-SPRING containers, such as Jetty
+1. Ostwind DOES NOT, AND WILL NOT, run as a Spring Boot Webservice
+2. Ostwind has ABSOLUTE ZERO direct-dependency from Spring
+3. Ostwind runs in NON-SPRING containers, such as Jetty
 
-_Athena rejects any conducts that violate the 3 rules above. NO EXCEPTION_.
+_Ostwind rejects any conducts that violate the 3 rules above. NO EXCEPTION_.
 
 Overview
 --------
 
-The following guide is intended to help developers who maintain or want to make changes to the Athena framework.
+The following guide is intended to help developers who maintain or want to make changes to the Ostwind framework.
 
 Building
 --------
 
-Athena is built using Maven. Because Athena is a mono-repo with interdependencies between modules, it is recommended to
+Ostwind is built using Maven. Because Ostwind is a mono-repo with interdependencies between modules, it is recommended to
 fully build and install the project at least once:
 
 ```bash
@@ -48,10 +48,10 @@ mvn clean install
 ```
 
 Thereafter, individual modules can be built whenever making changes to them. For example, the following command would
-rebuild only athena-core:
+rebuild only ostwind-core:
 
 ```bash
-mvn clean install -f athena-core
+mvn clean install -f ostwind-core
 ```
 
 Pull requests and release builds leverage GitHub Action. PR builds simply run the complete build along with code
@@ -113,8 +113,8 @@ The webservice will run on port **8080**, and you will see the data you inserted
 Release Versions
 ----------------
 
-Athena follows [semantic versioning](https://semver.org/) for its releases. Minor and patch versions only have the
+Ostwind follows [semantic versioning](https://semver.org/) for its releases. Minor and patch versions only have the
 version components of `MAJOR.MINOR.PATCH`.
 
 Major releases are often pre-released prior to the publication of the final version.  Pre-releases have the format of
-`MAJOR.MINOR.PATCH-prCANDIDATE`.  For example, 5.0.0-pr2 is release candidate 2 of the Athena 5.0.0 version.
+`MAJOR.MINOR.PATCH-prCANDIDATE`.  For example, 5.0.0-pr2 is release candidate 2 of the Ostwind 5.0.0 version.

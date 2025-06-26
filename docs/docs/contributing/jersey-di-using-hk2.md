@@ -71,7 +71,7 @@ the same class. What the last statement means is that we can only inject it as `
 obviously) not by any other class. As you will see later, it is possible to change this.
 
 > Note: The injection above is field injection, where the service is injected into the field of the resource. Another
-> type of injection is constructor injection, where the service is injected into the constructor. Athena uses
+> type of injection is constructor injection, where the service is injected into the constructor. Ostwind uses
 > constructor injection ubiquitously. An example of the constructor injection is shown below:
 >
 > ```java
@@ -83,7 +83,7 @@ obviously) not by any other class. As you will see later, it is possible to chan
 > }
 > ```
 >
-> Athena chooses constructor injection as opposed to field injection, as it _makes the resource easier to unit test_.
+> Ostwind chooses constructor injection as opposed to field injection, as it _makes the resource easier to unit test_.
 > Constructor injection doesn't require any different configuration.
 
 Lets say that instead of a class, the `GreetingService` is an interface, and we have an implementation of it (which is

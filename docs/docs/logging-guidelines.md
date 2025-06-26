@@ -38,15 +38,15 @@ Details and examples are below, but here's a summary of the log levels and their
 Log Levels
 ----------
 
-To be able to balance the trade off between logging more information and having better performance, Athena's logging
+To be able to balance the trade off between logging more information and having better performance, Ostwind's logging
 framework allows controlling which log messages are processed using Log Levels. Here are some guidelines to help figure
 out what level a particular message should be logged at. By following these guidelines, logging will be handled
-consistently across the Athena codebase.
+consistently across the Ostwind codebase.
 
 ### Error
 
-Should be used when Athena is having trouble and cannot reliably respond to requests. Under normal running conditions,
-there shouldn't be `Error`-level logs emitted by Athena. Any `Error`-level logs that _are_ emitted by Athena should be
+Should be used when Ostwind is having trouble and cannot reliably respond to requests. Under normal running conditions,
+there shouldn't be `Error`-level logs emitted by Ostwind. Any `Error`-level logs that _are_ emitted by Ostwind should be
 major events that likely require urgent intervention. Here are some examples:
 
 - There is a configuration error that will prevent the application from working _correctly_.
@@ -60,8 +60,8 @@ major events that likely require urgent intervention. Here are some examples:
 
 ### Warn
 
-Should be used when something isn't right, but Athena can still reliably respond to requests. Under normal running
-conditions, there _may_ be `Warn`-level logs emitted by Athena. `Warn`-level logs that are emitted by Athena _should_ be
+Should be used when something isn't right, but Ostwind can still reliably respond to requests. Under normal running
+conditions, there _may_ be `Warn`-level logs emitted by Ostwind. `Warn`-level logs that are emitted by Ostwind _should_ be
 looked at by a human, but should not typically require urgent intervention. Here are some examples:
 
 - There is a configuration error that will not prevent requests from being correctly satisfied, but requests may be
@@ -71,13 +71,13 @@ looked at by a human, but should not typically require urgent intervention. Here
 - A non-critical service is unavailable or is having trouble. It's possible that the issue will correct itself, but that
   depends on the service.
 
-  For example, the Swift response cache might be having errors or timing out. This won't prevent Athena from correctly
+  For example, the Swift response cache might be having errors or timing out. This won't prevent Ostwind from correctly
   responding to the request, but it may not be as fast due to the cache not working.
 
 ### Info
 
 Should be used to indicate status and telemetry for each HTTP request processed, as well as non-recurring events and
-information about the state of Athena. It is expected that Athena will be running at the `Info` logging level when
+information about the state of Ostwind. It is expected that Ostwind will be running at the `Info` logging level when
 running in production. As such, the information logged at this level should be the information needed for monitoring
 purposes, meaning that it effectively answers "Is the application healthy?" and "How is the application being used?"
 

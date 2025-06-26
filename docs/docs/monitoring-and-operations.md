@@ -17,13 +17,13 @@ sidebar_position: 5
 [//]: # (See the License for the specific language governing permissions and)
 [//]: # (limitations under the License.)
 
-Athena was built from the start to be easy to operate and debug. There are 3 primary ways in which Athena makes
+Ostwind was built from the start to be easy to operate and debug. There are 3 primary ways in which Ostwind makes
 debugging and gathering information about how it's running easy.
 
 Logs
 ----
 
-Athena has [strict guidelines](logging-guidelines) around
+Ostwind has [strict guidelines](logging-guidelines) around
 what information should be logged, when it should be logged, and what level it should be logged at. Here's a brief
 summary of the log levels and what they contain:
 
@@ -37,7 +37,7 @@ summary of the log levels and what they contain:
 
 ### Request Log
 
-Athena also has a tracing mechanism that records and collects information about each request as it flows through the
+Ostwind also has a tracing mechanism that records and collects information about each request as it flows through the
 system. This information is called the **Request Log** and it gets logged at the [INFO](logging-guidelines#Info) level
 when the response for a request is sent.
 
@@ -79,7 +79,7 @@ for logs emitted outside of processing a request, like background processes.
 Metrics
 -------
 
-Athena uses the [Metrics](http://metrics.dropwizard.io/) library (formerly Dropwizard Metrics) for gathering and
+Ostwind uses the [Metrics](http://metrics.dropwizard.io/) library (formerly Dropwizard Metrics) for gathering and
 reporting on runtime metrics and indicators. Typically, these are exposed through an admin servlet, and if that's
 enabled then there is [a list of Key Performance Indicators (KPIs)](kpi) that are exposed through the `/metrics`
 endpoint. The KPI document doesn't go into detail about what each of the KPIs mean, but it gives a rough overview of why
@@ -88,9 +88,9 @@ they matter.
 Health Checks
 -------------
 
-Athena also uses the Metrics library for implementing health checks. These are also exposed through the admin servlet,
+Ostwind also uses the Metrics library for implementing health checks. These are also exposed through the admin servlet,
 just like metrics, at `/status`. Each of the health checks has a message and a status, and if any of the checks fail,
 the HTTP Status Code for that `/status` request will be a 500 instead of a 200 to indicate the system is unhealthy.
 
-These health checks are also used to gate `/file` and `/metadata` requests, with Athena returning
+These health checks are also used to gate `/file` and `/metadata` requests, with Ostwind returning
 `503 Service Unavailable` if it doesn't think it is healthy.
