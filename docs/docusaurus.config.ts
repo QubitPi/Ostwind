@@ -18,15 +18,15 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Athena',
+  title: 'Ostwind',
   tagline: 'A GraphQL Object Storage Webservice Backed by OpenStack Swift and Hadoop HDFS',
   favicon: 'img/favicon.ico',
 
-  url: 'https://athena.qubitpi.org',
+  url: 'https://ostwind.qubitpi.org',
   baseUrl: '/',
 
   organizationName: 'QubitPi',
-  projectName: 'athena',
+  projectName: 'ostwind',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -45,11 +45,11 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/QubitPi/athena/tree/master/docs',
+          editUrl: 'https://github.com/QubitPi/Ostwind/tree/master/docs',
         },
         blog: {
           showReadingTime: true,
-          editUrl: 'https://github.com/QubitPi/athena/tree/master/docs',
+          editUrl: 'https://github.com/QubitPi/Ostwind/tree/master/docs',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -62,9 +62,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'Athena',
+      title: 'Ostwind',
       logo: {
-        alt: 'Athena Logo',
+        alt: 'Ostwind Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -76,12 +76,12 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: "https://athena.qubitpi.org/apidocs",
+          href: "https://ostwind.qubitpi.org/apidocs",
           label: "API",
           position: "left",
         },
         {
-          href: 'https://github.com/QubitPi/athena',
+          href: 'https://github.com/QubitPi/Ostwind',
           label: 'GitHub',
           position: 'right',
         },
@@ -104,7 +104,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub Issue',
-              href: 'https://github.com/QubitPi/athena/issues',
+              href: 'https://github.com/QubitPi/Ostwind/issues',
             },
             {
               label: 'Discord',
@@ -121,7 +121,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/QubitPi/athena',
+              href: 'https://github.com/QubitPi/Ostwind',
             },
           ],
         },

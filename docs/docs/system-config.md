@@ -17,25 +17,25 @@ sidebar_position: 4
 [//]: # (See the License for the specific language governing permissions and)
 [//]: # (limitations under the License.)
 
-Athena has two main configuration avenues, the domain object configuration (File Store, Meta Store, and Data Fetchers)
+Ostwind has two main configuration avenues, the domain object configuration (File Store, Meta Store, and Data Fetchers)
 which happens via compiled Java code, and system configuration via properties. The domain configuration is
 covered elsewhere, and we'll only cover the system configuration infrastructure here.
 
-The system for property configuration that Athena uses lives in it's own [sub-module][athena-system-config]. This system
-is extensible and reusable so that other Athena modules, and even other projects, can leverage it for their own property
+The system for property configuration that Ostwind uses lives in it's own [sub-module][ostwind-system-config]. This system
+is extensible and reusable so that other Ostwind modules, and even other projects, can leverage it for their own property
 config needs. That sub-module has it's own deep set of documentation, so we'll be focusing only on how to use it for
-configuring Athena.
+configuring Ostwind.
 
 Configuration Sources and Overrides
 -----------------------------------
 
-Configuration for Athena modules come from only one location (that is, within the [sub-module][athena-system-config]
+Configuration for Ostwind modules come from only one location (that is, within the [sub-module][ostwind-system-config]
 itself) and allows for overriding other settings. This is particularly useful when overriding a property set in a module
 to turn off a feature, or to override a default configuration for your application in a certain environment, for
 example.
 
 Configuration sources are shown below, and are resolved in priority order, with higher-priority sources overriding
-settings from lower-priority sources. Sources that are files will available to Athena on the Classpath for them to be
+settings from lower-priority sources. Sources that are files will available to Ostwind on the Classpath for them to be
 loaded.
 
 | Priority |              Source              |                     Notes                     |
@@ -52,4 +52,4 @@ a  rule to ignore this file by default to help prevent checking it in accidental
 
 :::
 
-[athena-system-config]: https://github.com/QubitPi/athena/tree/master/athena-system-config
+[ostwind-system-config]: https://github.com/QubitPi/Ostwind/tree/master/ostwind-system-config

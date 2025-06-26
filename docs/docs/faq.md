@@ -17,15 +17,15 @@ sidebar_position: 9
 [//]: # (See the License for the specific language governing permissions and)
 [//]: # (limitations under the License.)
 
-I Use IntelliJ. Is There Any Way to Easily Sync up with Athena's Code styles
+I Use IntelliJ. Is There Any Way to Easily Sync up with Ostwind's Code styles
 ----------------------------------------------------------------------------
 
-For the moment, we have distilled the most important code style conventions with respect to Athena's code as IntelliJ
+For the moment, we have distilled the most important code style conventions with respect to Ostwind's code as IntelliJ
 settings. If you are using IntelliJ, you may import these code style settings by importing the
-[Athena-Project-intellij-code-style.xml] file in the root of the repo. The setting for the project will appear as a new
-Scheme named *Athena-Project* under IntelliJ's `Editor -> Code Style` section.
+[Ostwind-Project-intellij-code-style.xml] file in the root of the repo. The setting for the project will appear as a new
+Scheme named *Ostwind-Project* under IntelliJ's `Editor -> Code Style` section.
 
 Alternatively, you might check the xml file that is included in the jar and map its settings to your development
 environment.
 
-[Athena-Project-intellij-code-style.xml]: https://github.com/QubitPi/athena/blob/master/Athena-Project-intellij-code-style.xml
+[Ostwind-Project-intellij-code-style.xml]: https://github.com/QubitPi/Ostwind/blob/master/Ostwind-Project-intellij-code-style.xml

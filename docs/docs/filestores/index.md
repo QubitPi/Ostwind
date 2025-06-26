@@ -20,7 +20,7 @@ title: File Stores
 A file store is responsible for:
 
 1. reading and writing files (.mp3, .pdf, etc.) to/from an object store. Files of the following types are supported by
-   Athena
+   Ostwind
 
    - PDF
    - MP4
@@ -29,21 +29,21 @@ A file store is responsible for:
 2. providing "transactions" that make all file operations atomic in a single request.
 3. declaring the native object store client it delegates persistence operations to.
 
-If a file store implementation is unable to handle a file InputStream, Athena pushes these responsibilities to the
+If a file store implementation is unable to handle a file InputStream, Ostwind pushes these responsibilities to the
 object store.
 
 Included Stores
 ---------------
 
-Athena comes bundled with a number of file stores:
+Ostwind comes bundled with a number of file stores:
 
-1. Swift Store - A file store that can map operations on a file to an underlying OpenStack Swift API. Athena has
+1. Swift Store - A file store that can map operations on a file to an underlying OpenStack Swift API. Ostwind has
    explicit support for Swift
 2. HDFS Store - File is persisted on Hadoop HDFS.
 
 :::tip
 
-It is assumed that the "HDFS Store" means a **single-cluster** HDFS. However, the Athena architecture does not preclude
+It is assumed that the "HDFS Store" means a **single-cluster** HDFS. However, the Ostwind architecture does not preclude
 implementing a multi-cluster HDFS store
 
 :::
@@ -53,20 +53,22 @@ Stores can be included through the following artifact dependencies:
 ### Swift Store
 
 ```xml
+
 <dependency>
-    <groupId>io.github.qubitpi.athena</groupId>
-    <artifactId>athena-filestore-swift</artifactId>
-    <version>${version.athena}</version>
+    <groupId>io.github.qubitpi.ostwindio.github.qubitpi.ostwind</groupId>
+    <artifactId>ostwind-filestore-swift</artifactId>
+    <version>${version.ostwind}</version>
 </dependency>
 ```
 
 ### HDFS Store
 
 ```xml
+
 <dependency>
-    <groupId>io.github.qubitpi.athena</groupId>
-    <artifactId>athena-filestore-hdfs</artifactId>
-    <version>${version.athena}</version>
+    <groupId>io.github.qubitpi.ostwindio.github.qubitpi.ostwind</groupId>
+    <artifactId>ostwind-filestore-hdfs</artifactId>
+    <version>${version.ostwind}</version>
 </dependency>
 ```
 
@@ -129,9 +131,9 @@ public class S3FileStore implements FileStore {
 Multiple Stores
 ---------------
 
-A common pattern in Athena is the need to support multiple file stores. Typically, one file store manages most files,
+A common pattern in Ostwind is the need to support multiple file stores. Typically, one file store manages most files,
 but some others may require a different object storage backend or have other needs to specialize the behavior of the
-store. The multiplex store in Athena manages multiple stores - delegating calls to the appropriate store which is
+store. The multiplex store in Ostwind manages multiple stores - delegating calls to the appropriate store which is
 responsible for a particular file.
 
 This is a [feature](https://trello.com/c/bHwNl4sk) yet to be offered soon.

@@ -36,18 +36,18 @@ Database-related tests contain 2 parts
 
 1. Groovy Spock unit tests on
 
-   - [Injected Query DataFetcher](../../../athena-examples/athena-example-books/src/test/groovy/io/github/qubitpi/athena/example/books/application/SQLQueryDataFetcherSpec.groovy)
-   - [Injected Mutation DataFetcher](../../../athena-examples/athena-example-books/src/test/groovy/io/github/qubitpi/athena/example/books/application/SQLMutationDataFetcherSpec.groovy)
+   - [Injected Query DataFetcher](../../../ostwind-examples/ostwind-example-books/src/test/groovy/io/github/qubitpi/ostwind/example/books/application/SQLQueryDataFetcherSpec.groovy)
+   - [Injected Mutation DataFetcher](../../../ostwind-examples/ostwind-example-books/src/test/groovy/io/github/qubitpi/ostwind/example/books/application/SQLMutationDataFetcherSpec.groovy)
 
 2. Live DB tests on endpoints
 
-   - In [file servlet endpoint test](../../../athena-examples/athena-example-books/src/test/groovy/io/github/qubitpi/athena/example/books/web/endpoints/FileServletSpec.groovy)
+   - In [file servlet endpoint test](../../../ostwind-examples/ostwind-example-books/src/test/groovy/io/github/qubitpi/ostwind/example/books/web/endpoints/FileServletSpec.groovy)
      and
-     [meta data servlet endpoint test](../../../athena-examples/athena-example-books/src/test/groovy/io/github/qubitpi/athena/example/books/web/endpoints/MetaServletSpec.groovy),
-     [Flyway migration](../../../athena-examples/athena-example-books/src/test/groovy/io/github/qubitpi/athena/example/books/application/SQLDBResourceManager.groovy)
+     [meta data servlet endpoint test](../../../ostwind-examples/ostwind-example-books/src/test/groovy/io/github/qubitpi/ostwind/example/books/web/endpoints/MetaServletSpec.groovy),
+     [Flyway migration](../../../ostwind-examples/ostwind-example-books/src/test/groovy/io/github/qubitpi/ostwind/example/books/application/SQLDBResourceManager.groovy)
      injects real data into a Derby in-meomroy SQL DB
    - The Derby data is injected via a shared [DBCP DataSource](#reference---apache-commons-dbcp2) declared in
-     [application BinderFactory](../../../athena-examples/athena-example-books/src/main/java/io/github/qubitpi/athena/example/books/application/BooksBinderFactory.java)
+     [application BinderFactory](../../../ostwind-examples/ostwind-example-books/src/main/java/io/github/qubitpi/ostwind/example/books/application/BooksBinderFactory.java)
    - The application resource is set alive through `JettyServerFactory`
 
 ### Reference - Apache Commons DBCP2
