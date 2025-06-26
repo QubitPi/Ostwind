@@ -1,10 +1,11 @@
-Ostwind <sup>![Java Version Badge][Java Version Badge]</sup>
-===========================================================
+Ostwind
+=======
 
 > My sincere thanks to [yahoo/fili] & [yahoo/elide], which gave tremendous amount of guidance on design and development
 > of [Ostwind], and to my former employer, Yahoo, who taught me to love software engineering and fundamentally
-> influenced my tech career
+> influenced my tech career.
 
+![Java Version Badge][Java Version Badge]
 [![Maven Central Version][Maven Central Version Badge]][Maven Central Version URL]
 [![GitHub Workflow Status][GitHub Workflow Status badge]][GitHub Workflow Status URL]
 [![Apache License Badge][Apache License Badge]][Apache License, Version 2.0]
@@ -85,6 +86,21 @@ Documentation
 -------------
 
 More information about Ostwind can be found [here][Ostwind Documentation]
+
+Contributing to Ostwind
+-----------------------
+
+Besides contributing high-quality code and tests, there are many other things that we could naturally be undertaking as
+an Ostwind contributor:
+
+- help out users and other developers on the [GitHub issues](https://github.com/QubitPi/Ostwind/issues)
+- review and test the [pull requests](https://github.com/QubitPi/Ostwind/pulls) submitted by others; this can help to
+  offload the burden on existing committers, who will definitely appreciate your efforts
+- participate in discussions about releases, roadmaps, architecture, and long-term plans
+- help improve the [website](https://ostwind.qubitpi.org/)
+- participate in (or even initiate) real-world events such as user/developer meetups
+- improve project infrastructure in order to increase the efficiency of committers and other contributors
+- help raise the project's quality bar (e.g. by setting up code coverage analysis)
 
 License
 -------

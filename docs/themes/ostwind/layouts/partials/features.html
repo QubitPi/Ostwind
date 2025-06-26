@@ -1,0 +1,85 @@
+<!--
+Copyright 2025 Jiaqi Liu. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<features class="container text-style white-background">
+  <div>
+    <div class="row feature-intro">
+      <div class="row section-header-style">
+        <h2 class="section-header-text" style="text-align: center;">What is Ostwind?</h2>
+      </div>
+      <p>
+        Ostwind is a Java library that lets you set up object storage webservice with minimal effort. Ostwind is
+        meant to be specialized on managing files, such as books, videos, and photos. It supports object storage
+        through two variants of APIs: A JSON API for uploading and downloading files and A GraphQL API for
+        reading file metadata, including File name, File type, etc.
+      </p>
+    </div>
+    <div class="row section-header-style">
+      <h2 class="section-header-text" style="text-align: center;">Key Features</h2>
+    </div>
+    <div class="row divs">
+      {{- partial "dockercomposeterminal.html" . -}}
+      <div class="col-md feature-border">
+        <h2 class="topic-text-style">Docker Support</h2>
+        <p>
+          Ostwind supports running everything in Docker, including its object storage.
+          It is designed to provide better support for faster CI/CD and easier DevOps.
+        </p>
+        <a class="icon-block" href="{{ .Site.Params.navbar.intro }}">
+          <button class="custom-button feature-button-style" role="button">Learn More</button>
+        </a>
+      </div>
+    </div>
+
+    <div class="row divs">
+      <div class="col-md feature-border">
+        <h2 class="topic-text-style">Specialized in Object Storage</h2>
+        <p>
+          Designed for Big Data and scalability, Ostwind has first-class support for OpenStack Swift and
+          Hadoop HDFS as back-ends and flexible pipeline-style architecture which handles nearly any back-end
+          for data storage
+        </p>
+        <a class="icon-block" href="{{ .Site.Params.navbar.filestore }}">
+          <button class="custom-button feature-button-style" role="button">Learn More</button>
+        </a>
+      </div>
+      <div class="col-md">
+        <a href="{{ .Site.Params.navbar.filestore }}">
+          <img alt="Object Storage" height="400" src="{{.Site.BaseURL}}/images/object-storage.svg" width="100%"></a>
+        </a>
+      </div>
+    </div>
+
+    <div class="row divs">
+      <div class="col-md ">
+        <a href="{{ .Site.Params.navbar.graphql }}">
+          <img alt="GraphQL" height="300" src="{{.Site.BaseURL}}/images/graphql.svg" width="100%"></a>
+        </a>
+      </div>
+      <div class="col-md feature-border">
+        <h2 class="topic-text-style">Cutting-Edge API Technology</h2>
+        <p>
+          Ostwind makes it easy to build and maintain GraphQL web services for managing file metadata.
+          Ostwind's API is clean and user-friendly, hiding the complexities of complicated data storage and
+          query optimization from end-users
+        </p>
+        <a class="icon-block" href="{{ .Site.Params.navbar.graphql }}">
+          <button class="custom-button feature-button-style" role="button">Learn More</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</features>
