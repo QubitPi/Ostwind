@@ -1,0 +1,43 @@
+baseURL = 'https://ostwind.qubitpi.org'
+languageCode = 'en-us'
+title = 'Ostwind Documentation'
+theme = 'ostwind'
+
+[params]
+  ostwindLogo = "/images/logo.svg"
+  logo = "/images/logo.png"
+
+[params.banner]
+    github = "https://github.com/QubitPi/Ostwind"
+    docker = "https://hub.docker.com/r/jack20191124/ostwind-example-books"
+    community = "https://github.com/QubitPi/Ostwind/issues"
+
+[params.license]
+    copyright = "The contents of this website are © 2025 Ostwind (Jiaqi Liu) under the terms of the Apache License v2."
+
+[params.qubitpi]
+    qubitpiUrl = "https://qubitpi.org/"
+
+[params.navbar]
+    release = "/general/downloads"
+
+    intro = "/docs/intro"
+    jsonApi = "/docs/json-api"
+    graphql = "/docs/graphql"
+    filestore = "/docs/filestore"
+    configuration = "/docs/configuration"
+    systemConfig = "/docs/system-config"
+    monitoringAndOperations = "/docs/monitoring-and-operations"
+    logging = "/docs/logging"
+    kpi = "/docs/kpi"
+    glossary = "/docs/glossary"
+
+    gettingStarted = "/development/intro/"
+    dependencyInjection = "/development/di/"
+    test = "/development/test/"
+    metaStore = "/development/metastore/"
+    localSwift = "/development/local-swift/"
+
+    yahooObjectStorate = "/blog/yahoo-object-storage/"
+[outputs]
+    home = ["HTML", "RSS", "JSON"]

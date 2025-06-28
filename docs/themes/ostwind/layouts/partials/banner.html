@@ -1,0 +1,36 @@
+<!--
+Copyright 2025 Jiaqi Liu. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<banner>
+  <div class="large-header" id="large-header">
+    <canvas id="canvas"></canvas>
+    <div class="main-title">
+      <a href="{{.Site.BaseURL}}"><img alt="Ostwind" height="300" src="{{.Site.BaseURL}}{{ .Site.Params.ostwindLogo }}" width="550"></a>
+      <h1 class="text-outline">Ostwind</h1>
+      <h4 class="thin">A GraphQL Object Storage Webservice Backed by OpenStack Swift and Hadoop HDFS</h4>
+      <a class="icon-block" href="{{ .Site.Params.banner.github }}">
+        <button class="custom-button banner-button-style" role="button">Github <i class="fab fa-github" style="font-size:35px"></i></button>
+      </a>
+      <a class="icon-block" href="{{ .Site.Params.banner.docker }}">
+        <button class="custom-button banner-button-style" role="button">Docker <i class="fab fa-docker" style='font-size:35px'></i></button>
+      </a>
+      <a class="icon-block" href="{{ .Site.Params.banner.community }}">
+        <button class="custom-button banner-button-style" role="button">Community <i class='fa-solid fa-comments' style='font-size:35px'></i></button>
+      </a>
+    </div>
+  </div>
+  <script src="{{ .Site.BaseURL }}/js/script.js"></script>
+</banner>

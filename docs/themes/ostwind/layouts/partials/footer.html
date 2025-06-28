@@ -1,0 +1,41 @@
+<!--
+Copyright 2025 Jiaqi Liu. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<footer class="black-background static-bottom" style="padding:30px">
+  <div class="row">
+    <div class="col-3">
+      <a href="{{ .Site.Params.qubitpi.qubitpiURL }}">
+        <img alt="QubitPi" height="100%" src="{{.Site.BaseURL}}{{ .Site.Params.logo }}" width="100"></a>
+      </a>
+    </div>
+    <div class="col-9">
+      <p class="footer-text">
+        My sincere thanks to <a href="https://github.com/yahoo/fili">yahoo/fili</a> &
+        <a href="https://github.com/yahoo/elide">yahoo/elide</a>, which
+        gave tremendous amount of guidance on design and development of
+        <a href="https://ostwind.qubitpi.org/">Ostwind</a>, and to my former employer, Yahoo, who taught me to love
+        software engineering and fundamentally influenced my tech career.
+      </p>
+    </div>
+  </div>
+  <div class="copyright row">
+    <a href="{{ .Site.BaseURL }}" style="color:grey">
+      {{ with .Site.Params.License.Copyright | default .Site.Title }} {{ . | safeHTML }} {{ end }}
+    </a>
+  </div>
+
+</footer>
+<script src="{{ .Site.BaseURL }}/js/bootstrap.bundle.min.js"></script>

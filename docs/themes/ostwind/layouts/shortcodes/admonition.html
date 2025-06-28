@@ -1,0 +1,58 @@
+<!--
+Copyright 2025 Jiaqi Liu. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+{{ if not (.Page.Scratch.Get "hasAdmonitions")}}
+{{ .Page.Scratch.Set "hasAdmonitions" "True" }}
+<style>
+    {{ $defaultBgColor := "#00bcf6"}}
+    .admonition{
+        border-radius: 5px;
+        padding: 0px;
+        border-left: 5px solid {{$defaultBgColor}};
+        box-shadow: 0 0 .5rem .2rem #00000025;
+    }
+    .admonition-title-container{
+        background-color: {{$defaultBgColor}};
+        border-top-right-radius: 5px;
+    }
+    .admonition-title {
+        font-weight: bolder;
+        font-size: large;
+        backdrop-filter: grayscale(50%) brightness(150%);
+        -webkit-backdrop-filter: grayscale(50%) brightness(150%);
+        padding: 5px 0 5px 30px;
+        border-top-right-radius: 5px;
+    }
+    @media (prefers-color-scheme: dark) {
+        .admonition-title {
+            backdrop-filter: grayscale(40%) brightness(40%);
+            -webkit-backdrop-filter: grayscale(40%) brightness(40%);
+        }
+    }
+    .admonition-content{
+        padding: 10px 0 10px 15px
+    }
+</style>
+{{ end }}
+
+<div class="admonition" {{if .Get "bg-color"}}style="border-left: 5px solid {{ .Get "bg-color" }};"{{end}}>
+    <div class="admonition-title-container" {{if .Get "bg-color"}}style="background-color: {{ .Get "bg-color" }};"{{end}}>
+        <div class="admonition-title">
+            {{ .Get "title" | default "Tip" }}
+        </div>
+    </div>
+    <div class="admonition-content">{{ printf "%s" .Inner | markdownify }}</div>
+</div>

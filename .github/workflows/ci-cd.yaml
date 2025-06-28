@@ -101,41 +101,33 @@ jobs:
         run: mvn clean verify -P acceptance-test
 
   documentation:
-    name: Test Documentation Build & Deploy Documentation to GitHub Pages
     needs: acceptance-tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
         with:
-          node-version: 22
-      - name: Set up JDK ${{ env.JDK_VERSION }}
-        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+          submodules: true
+          fetch-depth: 0
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
         with:
-          java-version: ${{ env.JDK_VERSION }}
-          distribution: ${{ env.JDK_DISTRIBUTION }}
-      - name: Install dependencies
-        run: yarn
+          hugo-version: '0.91.2'
+      - name: Build
+        run: hugo --minify
         working-directory: docs
-      - name: Build website
-        run: yarn build
-        working-directory: docs
-      - name: Load CNAME file
-        run: cp CNAME build
-        working-directory: docs
-      - name: Generate Javadoc
-        run: mvn -B clean javadoc:aggregate
-      - name: Move Javadoc into documentation directory
-        if: github.ref == 'refs/heads/master'
-        run: mv target/site/apidocs/ docs/build/apidocs/
-      - name: Deploy to GitHub Pages
+      - name: Deploy documentation to GitHub Pages
         if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/build
+          publish_dir: docs/public
+          enable_jekyll: false
+          destination_dir: ./
+          keep_files: true
           user_name: QubitPi
           user_email: jack20220723@gmail.com
+          cname: ostwind.qubitpi.org
+          force_orphan: true
 
   release:
     name: Release Ostwind to Maven Central
