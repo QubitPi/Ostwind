@@ -101,6 +101,7 @@ jobs:
         run: mvn clean verify -P acceptance-test
 
   documentation:
+    name: Test & Release Documentation (including Javadoc)
     needs: acceptance-tests
     runs-on: ubuntu-22.04
     steps:
@@ -112,9 +113,19 @@ jobs:
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.91.2'
-      - name: Build
+      - name: Set up JDK ${{ env.JDK_VERSION }}
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+        with:
+          java-version: ${{ env.JDK_VERSION }}
+          distribution: ${{ env.JDK_DISTRIBUTION }}
+      - name: Build documentation
         run: hugo --minify
         working-directory: docs
+      - name: Generate Javadoc
+        run: mvn -B clean javadoc:aggregate
+      - name: Move Javadoc into documentation directory
+        if: github.ref == 'refs/heads/master'
+        run: mv target/site/apidocs/ docs/public/apidocs/
       - name: Deploy documentation to GitHub Pages
         if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3
