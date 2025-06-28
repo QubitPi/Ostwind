@@ -1,0 +1,223 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta name=generator content="Hugo 0.91.2">
+<meta charset=utf-8>
+<meta content="IE=edge" http-equiv=x-ua-compatible>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<meta content name=description>
+<meta content name=author>
+<title>Ostwind Documentation</title>
+<link href=/favicon.ico rel=icon>
+<link href=https://ostwind.qubitpi.org/css/font-awesome.all.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/bootstrap.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/termynal.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/ostwind-theme.css rel=stylesheet>
+<meta content="#da532c" name=msapplication-TileColor>
+<meta content="#ffffff" name=theme-color>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://ostwind.qubitpi.org> <img alt=Ostwind height=35 src=https://ostwind.qubitpi.org/images/logo.svg width=60></a>
+<a class="header-text navbar-brand" href=https://ostwind.qubitpi.org>Ostwind</a>
+<button aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation" class=navbar-toggler data-bs-target=#navbarSupportedContent data-bs-toggle=collapse type=button>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=/Document id=navbarDropdown role=button>
+Documentation
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=/docs/intro>Getting Started</a></li>
+<li><a class=dropdown-item href=/docs/json-api>JSON API</a></li>
+<li><a class=dropdown-item href=/docs/graphql>GraphQL</a></li>
+<li><a class=dropdown-item href=/docs/filestore>File Stores</a></li>
+<li><a class=dropdown-item href=/docs/configuration>Configuration</a></li>
+<li><a class=dropdown-item href=/docs/system-config>System Configuration</a></li>
+<li><a class=dropdown-item href=/docs/monitoring-and-operations>Monitoring and Operations</a></li>
+<li><a class=dropdown-item href=/docs/logging>Logging Guidelines</a></li>
+<li><a class=dropdown-item href=/docs/kpi>Key Performance Indicators</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/docs/glossary>Glossary</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=https://ostwind.qubitpi.org/apidocs/ id=navbarDropdown role=button>
+API
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=/general/downloads id=navbarDropdown role=button>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Contributor Guide
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/intro/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/di/>Dependency Injection</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/test/>Testing</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/metastore/>Meta Stores</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/local-swift/>Swift (Local)</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Blogs
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/blog/yahoo-object-storage/>Yahoo
+Cloud Object Store</a></li>
+</ul>
+</li>
+<li>
+<form action=/search class=search-bar method=get>
+<input class=search-input id=search-query name=q placeholder=Search... type=search>
+<button class=search-button type=submit>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<banner>
+<div class=large-header id=large-header>
+<canvas id=canvas></canvas>
+<div class=main-title>
+<a href=https://ostwind.qubitpi.org><img alt=Ostwind height=300 src=https://ostwind.qubitpi.org/images/logo.svg width=550></a>
+<h1 class=text-outline>Ostwind</h1>
+<h4 class=thin>A GraphQL Object Storage Webservice Backed by OpenStack Swift and Hadoop HDFS</h4>
+<a class=icon-block href=https://github.com/QubitPi/Ostwind>
+<button class="custom-button banner-button-style" role=button>Github <i class="fab fa-github" style=font-size:35px></i></button>
+</a>
+<a class=icon-block href=https://hub.docker.com/r/jack20191124/ostwind-example-books>
+<button class="custom-button banner-button-style" role=button>Docker <i class="fab fa-docker" style=font-size:35px></i></button>
+</a>
+<a class=icon-block href=https://github.com/QubitPi/Ostwind/issues>
+<button class="custom-button banner-button-style" role=button>Community <i class="fa-solid fa-comments" style=font-size:35px></i></button>
+</a>
+</div>
+</div>
+<script src=https://ostwind.qubitpi.org/js/script.js></script>
+</banner>
+<features class="container text-style white-background">
+<div>
+<div class="row feature-intro">
+<div class="row section-header-style">
+<h2 class=section-header-text style=text-align:center>What is Ostwind?</h2>
+</div>
+<p>
+Ostwind is a Java library that lets you set up object storage webservice with minimal effort. Ostwind is
+meant to be specialized on managing files, such as books, videos, and photos. It supports object storage
+through two variants of APIs: A JSON API for uploading and downloading files and A GraphQL API for
+reading file metadata, including File name, File type, etc.
+</p>
+</div>
+<div class="row section-header-style">
+<h2 class=section-header-text style=text-align:center>Key Features</h2>
+</div>
+<div class="row divs">
+<dockercomposeterminal class=col-md>
+<div data-termynal data-termynal data-ty-linedelay=700 data-ty-typedelay=40 id=hs2>
+<span data-ty=input>docker compose up --build --force-recreate &</span>
+<span data-ty>[+] Running 12/12</span>
+<span data-ty> ✔ db Pulled</span>
+<span data-ty> ✔ 20e4dcae4c69 Pull complete</span>
+<span data-ty> ✔ 1c56c3d4ce74 Pull complete</span>
+<span data-ty> ✔ e9f03a1c24ce Pull complete</span>
+<span data-ty>...</span>
+<span data-ty></span>
+<span data-ty=input>docker ps -a</span>
+<span data-ty></span>
+</div>
+<script data-termynal-container=#hs2 src=https://ostwind.qubitpi.org/js/termynal.js></script>
+</dockercomposeterminal>
+<div class="col-md feature-border">
+<h2 class=topic-text-style>Docker Support</h2>
+<p>
+Ostwind supports running everything in Docker, including its object storage.
+It is designed to provide better support for faster CI/CD and easier DevOps.
+</p>
+<a class=icon-block href=/docs/intro>
+<button class="custom-button feature-button-style" role=button>Learn More</button>
+</a>
+</div>
+</div>
+<div class="row divs">
+<div class="col-md feature-border">
+<h2 class=topic-text-style>Specialized in Object Storage</h2>
+<p>
+Designed for Big Data and scalability, Ostwind has first-class support for OpenStack Swift and
+Hadoop HDFS as back-ends and flexible pipeline-style architecture which handles nearly any back-end
+for data storage
+</p>
+<a class=icon-block href=/docs/filestore>
+<button class="custom-button feature-button-style" role=button>Learn More</button>
+</a>
+</div>
+<div class=col-md>
+<a href=/docs/filestore>
+<img alt="Object Storage" height=400 src=https://ostwind.qubitpi.org/images/object-storage.svg width=100%></a>
+</a>
+</div>
+</div>
+<div class="row divs">
+<div class=col-md>
+<a href=/docs/graphql>
+<img alt=GraphQL height=300 src=https://ostwind.qubitpi.org/images/graphql.svg width=100%></a>
+</a>
+</div>
+<div class="col-md feature-border">
+<h2 class=topic-text-style>Cutting-Edge API Technology</h2>
+<p>
+Ostwind makes it easy to build and maintain GraphQL web services for managing file metadata.
+Ostwind's API is clean and user-friendly, hiding the complexities of complicated data storage and
+query optimization from end-users
+</p>
+<a class=icon-block href=/docs/graphql>
+<button class="custom-button feature-button-style" role=button>Learn More</button>
+</a>
+</div>
+</div>
+</div>
+</features>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://qubitpi.org/>
+<img alt=QubitPi height=100% src=https://ostwind.qubitpi.org/images/logo.png width=100></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>
+My sincere thanks to <a href=https://github.com/yahoo/fili>yahoo/fili</a> &
+        <a href=https://github.com/yahoo/elide>yahoo/elide</a>, which
+gave tremendous amount of guidance on design and development of
+<a href=https://ostwind.qubitpi.org/>Ostwind</a>, and to my former employer, Yahoo, who taught me to love
+software engineering and fundamentally influenced my tech career.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://ostwind.qubitpi.org style=color:grey>
+The contents of this website are © 2025 Ostwind (Jiaqi Liu) under the terms of the Apache License v2.
+</a>
+</div>
+</footer>
+<script src=https://ostwind.qubitpi.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

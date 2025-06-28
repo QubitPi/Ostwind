@@ -1,0 +1,200 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta content="IE=edge" http-equiv=x-ua-compatible>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<meta content name=description>
+<meta content name=author>
+<title>Development</title>
+<link href=/favicon.ico rel=icon>
+<link href=https://ostwind.qubitpi.org/css/font-awesome.all.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/bootstrap.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/termynal.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/ostwind-theme.css rel=stylesheet>
+<meta content="#da532c" name=msapplication-TileColor>
+<meta content="#ffffff" name=theme-color>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://ostwind.qubitpi.org> <img alt=Ostwind height=35 src=https://ostwind.qubitpi.org/images/logo.svg width=60></a>
+<a class="header-text navbar-brand" href=https://ostwind.qubitpi.org>Ostwind</a>
+<button aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation" class=navbar-toggler data-bs-target=#navbarSupportedContent data-bs-toggle=collapse type=button>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=/Document id=navbarDropdown role=button>
+Documentation
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=/docs/intro>Getting Started</a></li>
+<li><a class=dropdown-item href=/docs/json-api>JSON API</a></li>
+<li><a class=dropdown-item href=/docs/graphql>GraphQL</a></li>
+<li><a class=dropdown-item href=/docs/filestore>File Stores</a></li>
+<li><a class=dropdown-item href=/docs/configuration>Configuration</a></li>
+<li><a class=dropdown-item href=/docs/system-config>System Configuration</a></li>
+<li><a class=dropdown-item href=/docs/monitoring-and-operations>Monitoring and Operations</a></li>
+<li><a class=dropdown-item href=/docs/logging>Logging Guidelines</a></li>
+<li><a class=dropdown-item href=/docs/kpi>Key Performance Indicators</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/docs/glossary>Glossary</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=https://ostwind.qubitpi.org/apidocs/ id=navbarDropdown role=button>
+API
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=/general/downloads id=navbarDropdown role=button>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Contributor Guide
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/intro/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/di/>Dependency Injection</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/test/>Testing</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/metastore/>Meta Stores</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/local-swift/>Swift (Local)</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Blogs
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/blog/yahoo-object-storage/>Yahoo
+Cloud Object Store</a></li>
+</ul>
+</li>
+<li>
+<form action=/search class=search-bar method=get>
+<input class=search-input id=search-query name=q placeholder=Search... type=search>
+<button class=search-button type=submit>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<p>Ostwind is developed in <a href=https://eclipse-ee4j.github.io/jersey/>Jersey</a> framework.</p>
+<p><strong>NOTE:</strong> In case you are not familiar with Jersey, it is a parallel technology with &ldquo;Spring Boot framework&rdquo;. <strong>Ostwind
+offers absolutely NO support for Spring</strong> and will remain as an exclusive Jersey application in the future, because
+Jersey, alone with its backing technology <a href=https://javaee.github.io/hk2/>HK2</a>, is the reference-implementation of
+JSR-370 (and HK2, JSR-330) <em>standards</em> while Spring is not.</p>
+<p>By &ldquo;having no support for Spring&rdquo;, Ostwind means the following:</p>
+<ol>
+<li>Ostwind DOES NOT, AND WILL NOT, run as a Spring Boot Webservice</li>
+<li>Ostwind has ABSOLUTE ZERO direct-dependency from Spring</li>
+<li>Ostwind runs in NON-SPRING containers, such as Jetty</li>
+</ol>
+<p><em>Ostwind rejects any conducts that violate the 3 rules above. NO EXCEPTION</em>.</p>
+<h2 id=overview>Overview</h2>
+<p><img src=../../images/class-diagram.png alt="Error loading class-diagram.png"></p>
+<p>The following guide is intended to help developers who maintain or want to make changes to the Ostwind framework.</p>
+<h2 id=building>Building</h2>
+<p>Ostwind is built using Maven. Because Ostwind is a mono-repo with interdependencies between modules, it is recommended to
+fully build and install the project at least once:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mvn clean install
+</code></pre></div><p>Thereafter, individual modules can be built whenever making changes to them. For example, the following command would
+rebuild only ostwind-core:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mvn clean install -f ostwind-core
+</code></pre></div><p>Pull requests and release builds leverage GitHub Action. PR builds simply run the complete build along with code
+coverage.</p>
+<h2 id=running-webservice-in-standalone-jetty>Running Webservice in Standalone Jetty</h2>
+<h3 id=download-jetty>Download Jetty</h3>
+<p>For JDK <strong>17</strong>, which is the version JWT runs on, it&rsquo;s been tested that Jetty <em>11.0.15</em> worked. Hence, we will use
+<a href=https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/11.0.15/jetty-home-11.0.15.tar.gz>&ldquo;11.0.15&rdquo; release</a> as
+an example:</p>
+<p><img src=../../images/download-jetty-page.png alt="Error loading download-jetty-page.png"></p>
+<p>Put the <code>tar.gz</code> file into a location of your choice as the installation path and extract the Jetty binary using</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>tar -xzvf jetty-home-11.0.15.tar.gz
+</code></pre></div><p>The extracted directory <em>jetty-home-11.0.15</em> is the Jetty distribution. We call this directory <strong>$JETTY_HOME</strong>, which
+should not be modified.</p>
+<h3 id=setting-up-standalone-jetty>Setting Up Standalone Jetty</h3>
+<p>Our <a href=#building>WAR file</a> will be dropped to a directory where Jetty can pick up and run. We call this directory
+<strong>$JETTY_BASE</strong>, which is usually different from the <em>$JETTY_HOME</em>. The <em>$JETTY_BASE</em> also contains container runtime
+configs. In short, the Standalone Jetty container will be setup with</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>export JETTY_HOME<span style=color:#f92672>=</span>/path/to/jetty-home-11.0.15
+mkdir -p /path/to/jetty-base
+cd /path/to/jetty-base
+java -jar $JETTY_HOME/start.jar --add-module<span style=color:#f92672>=</span>annotations,server,http,deploy,servlet,webapp,resources,jsp
+</code></pre></div><p>where <code>/path/to/</code> is the <em>absolute</em> path to the directory containing the <code>jetty-home-11.0.15</code> directory</p>
+<p>The <code>--add-module=annotations,server,http,deploy,servlet,webapp,resources,jsp</code> is how we configure the Jetty
+container.</p>
+<p>Lastly, drop the <a href=#building>WAR file</a> into <strong>/path/to/jetty-base/webapps</strong> directory and rename the WAR file to
+<strong>ROOT.war</strong>:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mv /path/to/war-file /path/to/jetty-base/webapps/ROOT.war
+</code></pre></div><h3 id=running-webservice>Running Webservice</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>java -jar $JETTY_HOME/start.jar
+</code></pre></div><p>The webservice will run on port <strong>8080</strong>, and you will see the data you inserted</p>
+<h2 id=release-versions>Release Versions</h2>
+<p>Ostwind follows <a href=https://semver.org/>semantic versioning</a> for its releases. Minor and patch versions only have the
+version components of <code>MAJOR.MINOR.PATCH</code>.</p>
+<p>Major releases are often pre-released prior to the publication of the final version. Pre-releases have the format of
+<code>MAJOR.MINOR.PATCH-prCANDIDATE</code>. For example, 5.0.0-pr2 is release candidate 2 of the Ostwind 5.0.0 version.</p>
+<h2 id=faq>FAQ</h2>
+<h3 id=i-use-intellij-is-there-any-way-to-easily-sync-up-with-ostwinds-code-styles>I Use IntelliJ. Is There Any Way to Easily Sync up with Ostwind&rsquo;s Code styles</h3>
+<p>For the moment, we have distilled the most important code style conventions with respect to Ostwind&rsquo;s code as IntelliJ
+settings. If you are using IntelliJ, you may import these code style settings by importing the
+<a href=https://github.com/QubitPi/Ostwind/blob/master/Ostwind-Project-intellij-code-style.xml>Ostwind-Project-intellij-code-style.xml</a> file in the root of the repo. The setting for the project will appear as a new
+Scheme named <em>Ostwind-Project</em> under IntelliJ&rsquo;s <code>Editor -> Code Style</code> section.</p>
+<p>Alternatively, you might check the xml file that is included in the jar and map its settings to your development
+environment.</p>
+<h2 id=troubleshooting>Troubleshooting</h2>
+<h3 id=checkstyle-error---extra-lines-between-braces-regexpmultiline>Checkstyle Error - &ldquo;Extra lines between braces [RegexpMultiline]&rdquo;</h3>
+<p>This is an Ostwind-custom checkstyle rule which simple disallow the following code snippet:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#f92672>}</span>
+
+<span style=color:#f92672>}</span>
+</code></pre></div><p>Basically, multiple lines between right curly braces is defined as a checkstyle violation. The error, however, might
+still pops up with something <em>visually</em> like this:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>Note that no extra line can be seen in this reported case. The most probably cause might be a shared development
+environment where one team member wrote code on Windows, which uses CRLF line endings, and the other uses UNIX/Mac.
+We should <a href=https://stackoverflow.com/a/50765523/14312712>replace all CRLF endings with UNIX &lsquo;\n&rsquo; endings</a>.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://qubitpi.org/>
+<img alt=QubitPi height=100% src=https://ostwind.qubitpi.org/images/logo.png width=100></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>
+My sincere thanks to <a href=https://github.com/yahoo/fili>yahoo/fili</a> &
+        <a href=https://github.com/yahoo/elide>yahoo/elide</a>, which
+gave tremendous amount of guidance on design and development of
+<a href=https://ostwind.qubitpi.org/>Ostwind</a>, and to my former employer, Yahoo, who taught me to love
+software engineering and fundamentally influenced my tech career.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://ostwind.qubitpi.org style=color:grey>
+The contents of this website are © 2025 Ostwind (Jiaqi Liu) under the terms of the Apache License v2.
+</a>
+</div>
+</footer>
+<script src=https://ostwind.qubitpi.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

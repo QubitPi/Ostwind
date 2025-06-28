@@ -1,0 +1,13 @@
+io.github.qubitpi.ostwind.application
+io.github.qubitpi.ostwind.config
+io.github.qubitpi.ostwind.example.books.application
+io.github.qubitpi.ostwind.file
+io.github.qubitpi.ostwind.file.identifier
+io.github.qubitpi.ostwind.filestore
+io.github.qubitpi.ostwind.filestore.swift
+io.github.qubitpi.ostwind.metadata
+io.github.qubitpi.ostwind.metastore
+io.github.qubitpi.ostwind.metastore.graphql
+io.github.qubitpi.ostwind.metastore.graphql.query
+io.github.qubitpi.ostwind.web.endpoints
+io.github.qubitpi.ostwind.web.graphql

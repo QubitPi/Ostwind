@@ -1,0 +1,235 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta content="IE=edge" http-equiv=x-ua-compatible>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<meta content name=description>
+<meta content name=author>
+<title>Logging Guidelines</title>
+<link href=/favicon.ico rel=icon>
+<link href=https://ostwind.qubitpi.org/css/font-awesome.all.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/bootstrap.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/termynal.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/ostwind-theme.css rel=stylesheet>
+<meta content="#da532c" name=msapplication-TileColor>
+<meta content="#ffffff" name=theme-color>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://ostwind.qubitpi.org> <img alt=Ostwind height=35 src=https://ostwind.qubitpi.org/images/logo.svg width=60></a>
+<a class="header-text navbar-brand" href=https://ostwind.qubitpi.org>Ostwind</a>
+<button aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation" class=navbar-toggler data-bs-target=#navbarSupportedContent data-bs-toggle=collapse type=button>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=/Document id=navbarDropdown role=button>
+Documentation
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=/docs/intro>Getting Started</a></li>
+<li><a class=dropdown-item href=/docs/json-api>JSON API</a></li>
+<li><a class=dropdown-item href=/docs/graphql>GraphQL</a></li>
+<li><a class=dropdown-item href=/docs/filestore>File Stores</a></li>
+<li><a class=dropdown-item href=/docs/configuration>Configuration</a></li>
+<li><a class=dropdown-item href=/docs/system-config>System Configuration</a></li>
+<li><a class=dropdown-item href=/docs/monitoring-and-operations>Monitoring and Operations</a></li>
+<li><a class=dropdown-item href=/docs/logging>Logging Guidelines</a></li>
+<li><a class=dropdown-item href=/docs/kpi>Key Performance Indicators</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/docs/glossary>Glossary</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=https://ostwind.qubitpi.org/apidocs/ id=navbarDropdown role=button>
+API
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=/general/downloads id=navbarDropdown role=button>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Contributor Guide
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/intro/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/di/>Dependency Injection</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/test/>Testing</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/metastore/>Meta Stores</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/local-swift/>Swift (Local)</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Blogs
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/blog/yahoo-object-storage/>Yahoo
+Cloud Object Store</a></li>
+</ul>
+</li>
+<li>
+<form action=/search class=search-bar method=get>
+<input class=search-input id=search-query name=q placeholder=Search... type=search>
+<button class=search-button type=submit>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<p>Logs are an important tool for debugging problems, as well as for gaining insight into how something is running under
+otherwise normal conditions. Because logs are so useful, it&rsquo;s tempting to always log everything that&rsquo;s going on, but
+processing logs is much more work than it would seem and writing too many logs has a significant negative impact on
+performance.</p>
+<p>The Ostwind logs are Jetty logs, so they can be found wherever your Jetty instance stores its logs.</p>
+<h2 id=summary>Summary</h2>
+<p>Details and examples are below, but here&rsquo;s a summary of the log levels and their meanings.</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Error</td>
+<td>System-caused problem preventing correct results for requests. Major, &ldquo;wake up a human&rdquo; events.</td>
+</tr>
+<tr>
+<td>Warn</td>
+<td>Something&rsquo;s wrong, like no caching, but can still correctly respond to requests. A human should investigate.</td>
+</tr>
+<tr>
+<td>Info</td>
+<td>Working as expected. Information needed for monitoring. Answers &ldquo;Are things healthy.&rdquo;</td>
+</tr>
+<tr>
+<td>Debug</td>
+<td>High-level data flow and errors. Rich insight, but not overwhelming. Per-request errors, but not happy-path.</td>
+</tr>
+<tr>
+<td>Trace</td>
+<td>Most verbose. Full data flow. Not intended to be used in production, or very rarely.</td>
+</tr>
+</tbody>
+</table>
+<h2 id=log-levels>Log Levels</h2>
+<p>To be able to balance the trade off between logging more information and having better performance, Ostwind&rsquo;s logging
+framework allows controlling which log messages are processed using Log Levels. Here are some guidelines to help figure
+out what level a particular message should be logged at. By following these guidelines, logging will be handled
+consistently across the Ostwind codebase.</p>
+<h3 id=error>Error</h3>
+<p>Should be used when Ostwind is having trouble and cannot reliably respond to requests. Under normal running conditions,
+there shouldn&rsquo;t be <code>Error</code>-level logs emitted by Ostwind. Any <code>Error</code>-level logs that <em>are</em> emitted by Ostwind should be
+major events that likely require urgent intervention. Here are some examples:</p>
+<ul>
+<li>
+<p>There is a configuration error that will prevent the application from working <em>correctly</em>.</p>
+</li>
+<li>
+<p>There is an unexpected error (ie. not caused by the user) that is going to result in failing the request with a 500
+HTTP status code.</p>
+<p>Expected request failure conditions that are <em>not</em> the user&rsquo;s fault which result in 5xx-level HTTP
+status codes should <em>not</em> result in a log at the <code>Error</code> level. Examples of these include <code>503 Service Unavailable</code>
+responses when some runtime data/objects hasn&rsquo;t been loaded, or <code>507 Insufficient Storage</code> when a request exceeds the
+weight limit.</p>
+</li>
+</ul>
+<h3 id=warn>Warn</h3>
+<p>Should be used when something isn&rsquo;t right, but Ostwind can still reliably respond to requests. Under normal running
+conditions, there <em>may</em> be <code>Warn</code>-level logs emitted by Ostwind. <code>Warn</code>-level logs that are emitted by Ostwind <em>should</em> be
+looked at by a human, but should not typically require urgent intervention. Here are some examples:</p>
+<ul>
+<li>
+<p>There is a configuration error that will not prevent requests from being correctly satisfied, but requests may be
+satisfied non-optimally or with some other down-side.</p>
+</li>
+<li>
+<p>The app tries to start as indicated, but has to fall back to some default configuration because an error was
+encountered. The app can still start, but not the way it expected to.</p>
+</li>
+<li>
+<p>A non-critical service is unavailable or is having trouble. It&rsquo;s possible that the issue will correct itself, but that
+depends on the service.</p>
+<p>For example, the Swift response cache might be having errors or timing out. This won&rsquo;t prevent Ostwind from correctly
+responding to the request, but it may not be as fast due to the cache not working.</p>
+</li>
+</ul>
+<h3 id=info>Info</h3>
+<p>Should be used to indicate status and telemetry for each HTTP request processed, as well as non-recurring events and
+information about the state of Ostwind. It is expected that Ostwind will be running at the <code>Info</code> logging level when
+running in production. As such, the information logged at this level should be the information needed for monitoring
+purposes, meaning that it effectively answers &ldquo;Is the application healthy?&rdquo; and &ldquo;How is the application being used?&rdquo;</p>
+<ul>
+<li>Startup / shutdown information (success or failure of main components starting or stopping)</li>
+<li>Timing and telemetry about processing each request</li>
+</ul>
+<h3 id=debug>Debug</h3>
+<p>Should be used to indicate high-level data flow and request handling steps. It&rsquo;s expected that the <code>Debug</code> log level
+will be used when determining why something is behaving unexpectedly. As such, the information logged at the <code>Debug</code>
+level should give a fairly rich insight into what is happening, but should not contain so much information as to be
+overwhelming.</p>
+<p>One exception to this is that &ldquo;normal&rdquo; or &ldquo;<a href=https://en.wikipedia.org/wiki/Happy_path>happy path</a>&rdquo; request processing
+flow should <em>not</em> be logged at the <code>Debug</code> level. This is because it&rsquo;s assumed that the bulk of the work will be for
+processing requests and we don&rsquo;t want to flood the log with too many &ldquo;everything is working as normal&rdquo; events. Here are
+some examples of what should be logged at the <code>Debug</code> level:</p>
+<ul>
+<li>When the request is going to fail due to user error, like an improper date format or other input validation error.</li>
+<li>Once-per-request information, like which Swift Account/Container is selected.</li>
+<li>Normal execution flow while starting up / shutting down.</li>
+<li>Normal execution flow while running, but not processing a request.</li>
+</ul>
+<h3 id=trace>Trace</h3>
+<p><code>Trace</code> is the most verbose log level and it&rsquo;s expected that it will only be turned on very rarely in a production
+setting. This is the level at which to log &ldquo;normal&rdquo; execution flow for request handling.</p>
+<ul>
+<li>Normal execution flow while processing a request.</li>
+<li>Large or tight loops for any kind of execution (app-start, non-request, request processing).</li>
+<li>If the loop is time-sensitive or particularly hot, however, consider logging outside the loop so as not to impede
+performance.</li>
+</ul>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://qubitpi.org/>
+<img alt=QubitPi height=100% src=https://ostwind.qubitpi.org/images/logo.png width=100></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>
+My sincere thanks to <a href=https://github.com/yahoo/fili>yahoo/fili</a> &
+        <a href=https://github.com/yahoo/elide>yahoo/elide</a>, which
+gave tremendous amount of guidance on design and development of
+<a href=https://ostwind.qubitpi.org/>Ostwind</a>, and to my former employer, Yahoo, who taught me to love
+software engineering and fundamentally influenced my tech career.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://ostwind.qubitpi.org style=color:grey>
+The contents of this website are © 2025 Ostwind (Jiaqi Liu) under the terms of the Apache License v2.
+</a>
+</div>
+</footer>
+<script src=https://ostwind.qubitpi.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

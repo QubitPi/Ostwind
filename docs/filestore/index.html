@@ -1,0 +1,225 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta content="IE=edge" http-equiv=x-ua-compatible>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<meta content name=description>
+<meta content name=author>
+<title>File Stores</title>
+<link href=/favicon.ico rel=icon>
+<link href=https://ostwind.qubitpi.org/css/font-awesome.all.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/bootstrap.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/termynal.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/ostwind-theme.css rel=stylesheet>
+<meta content="#da532c" name=msapplication-TileColor>
+<meta content="#ffffff" name=theme-color>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://ostwind.qubitpi.org> <img alt=Ostwind height=35 src=https://ostwind.qubitpi.org/images/logo.svg width=60></a>
+<a class="header-text navbar-brand" href=https://ostwind.qubitpi.org>Ostwind</a>
+<button aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation" class=navbar-toggler data-bs-target=#navbarSupportedContent data-bs-toggle=collapse type=button>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=/Document id=navbarDropdown role=button>
+Documentation
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=/docs/intro>Getting Started</a></li>
+<li><a class=dropdown-item href=/docs/json-api>JSON API</a></li>
+<li><a class=dropdown-item href=/docs/graphql>GraphQL</a></li>
+<li><a class=dropdown-item href=/docs/filestore>File Stores</a></li>
+<li><a class=dropdown-item href=/docs/configuration>Configuration</a></li>
+<li><a class=dropdown-item href=/docs/system-config>System Configuration</a></li>
+<li><a class=dropdown-item href=/docs/monitoring-and-operations>Monitoring and Operations</a></li>
+<li><a class=dropdown-item href=/docs/logging>Logging Guidelines</a></li>
+<li><a class=dropdown-item href=/docs/kpi>Key Performance Indicators</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/docs/glossary>Glossary</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=https://ostwind.qubitpi.org/apidocs/ id=navbarDropdown role=button>
+API
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=/general/downloads id=navbarDropdown role=button>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Contributor Guide
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/intro/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/di/>Dependency Injection</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/test/>Testing</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/metastore/>Meta Stores</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/local-swift/>Swift (Local)</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Blogs
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/blog/yahoo-object-storage/>Yahoo
+Cloud Object Store</a></li>
+</ul>
+</li>
+<li>
+<form action=/search class=search-bar method=get>
+<input class=search-input id=search-query name=q placeholder=Search... type=search>
+<button class=search-button type=submit>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<p>A file store is responsible for:</p>
+<ol>
+<li>
+<p>reading and writing files (.mp3, .pdf, etc.) to/from an object store. Files of the following types are supported by
+Ostwind</p>
+<ul>
+<li>PDF</li>
+<li>MP4</li>
+<li>.txt file</li>
+</ul>
+</li>
+<li>
+<p>providing &ldquo;transactions&rdquo; that make all file operations atomic in a single request.</p>
+</li>
+<li>
+<p>declaring the native object store client it delegates persistence operations to.</p>
+</li>
+</ol>
+<p>If a file store implementation is unable to handle a file InputStream, Ostwind pushes these responsibilities to the
+object store.</p>
+<h2 id=included-stores>Included Stores</h2>
+<p>Ostwind comes bundled with a number of file stores:</p>
+<ol>
+<li>Swift Store - A file store that can map operations on a file to an underlying OpenStack Swift API. Ostwind has
+explicit support for Swift</li>
+<li>HDFS Store - File is persisted on Hadoop HDFS.</li>
+</ol>
+<style>.admonition{border-radius:5px;padding:0;border-left:5px solid #00bcf6;box-shadow:0 0 .5rem .2rem #00000025}.admonition-title-container{background-color:#00bcf6;border-top-right-radius:5px}.admonition-title{font-weight:bolder;font-size:large;backdrop-filter:grayscale(50%)brightness(150%);-webkit-backdrop-filter:grayscale(50%)brightness(150%);padding:5px 0 5px 30px;border-top-right-radius:5px}@media(prefers-color-scheme:dark){.admonition-title{backdrop-filter:grayscale(40%)brightness(40%);-webkit-backdrop-filter:grayscale(40%)brightness(40%)}}.admonition-content{padding:10px 0 10px 15px}</style>
+<div class=admonition style="border-left:5px solid #0e8">
+<div class=admonition-title-container style=background-color:#0e8>
+<div class=admonition-title>
+Tip
+</div>
+</div>
+<div class=admonition-content>It is assumed that the &ldquo;HDFS Store&rdquo; means a <strong>single-cluster</strong> HDFS. However, the Ostwind architecture does not preclude
+implementing a multi-cluster HDFS store</div>
+</div>
+<p>Stores can be included through the following artifact dependencies:</p>
+<h3 id=swift-store>Swift Store</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml>
+<span style=color:#f92672>&lt;dependency&gt;</span>
+    <span style=color:#f92672>&lt;groupId&gt;</span>io.github.qubitpi.ostwindio.github.qubitpi.ostwind<span style=color:#f92672>&lt;/groupId&gt;</span>
+    <span style=color:#f92672>&lt;artifactId&gt;</span>ostwind-filestore-swift<span style=color:#f92672>&lt;/artifactId&gt;</span>
+    <span style=color:#f92672>&lt;version&gt;</span>${version.ostwind}<span style=color:#f92672>&lt;/version&gt;</span>
+<span style=color:#f92672>&lt;/dependency&gt;</span>
+</code></pre></div><h3 id=hdfs-store>HDFS Store</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml>
+<span style=color:#f92672>&lt;dependency&gt;</span>
+    <span style=color:#f92672>&lt;groupId&gt;</span>io.github.qubitpi.ostwindio.github.qubitpi.ostwind<span style=color:#f92672>&lt;/groupId&gt;</span>
+    <span style=color:#f92672>&lt;artifactId&gt;</span>ostwind-filestore-hdfs<span style=color:#f92672>&lt;/artifactId&gt;</span>
+    <span style=color:#f92672>&lt;version&gt;</span>${version.ostwind}<span style=color:#f92672>&lt;/version&gt;</span>
+<span style=color:#f92672>&lt;/dependency&gt;</span>
+</code></pre></div><h2 id=overriding-the-store>Overriding the Store</h2>
+<p>To change the store, override the <code>FileStore</code> binding. For example, to use a store called <code>SomeCustomFileStore</code>:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppBinderFactory</span> <span style=color:#66d9ef>extends</span> AbstractBinderFactory <span style=color:#f92672>{</span>
+
+    <span style=color:#f92672>...</span>
+
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>protected</span> Class<span style=color:#f92672>&lt;?</span> <span style=color:#66d9ef>extends</span> FileStore<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>buildFileStore</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> SomeCustomFileStore<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h2 id=custom-stores>Custom Stores</h2>
+<p>Custom stores can be written by implementing the <code>FileStore</code> interface. Take Amazon S3 for instance</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Singleton</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>S3FileStore</span> <span style=color:#66d9ef>implements</span> FileStore <span style=color:#f92672>{</span>
+
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> AmazonS3 s3client<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> FileIdGenerator fileIdGenerator<span style=color:#f92672>;</span>
+
+    <span style=color:#a6e22e>@Inject</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>S3FileStore</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@NotNull</span> <span style=color:#66d9ef>final</span> AmazonS3 s3client<span style=color:#f92672>,</span> <span style=color:#a6e22e>@NotNull</span> <span style=color:#66d9ef>final</span> FileIdGenerator fileIdGenerator<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>s3client</span> <span style=color:#f92672>=</span> Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>requireNonNull</span><span style=color:#f92672>(</span>s3client<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>fileIdGenerator</span> <span style=color:#f92672>=</span> Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>requireNonNull</span><span style=color:#f92672>(</span>fileIdGenerator<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>upload</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> File file<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>final</span> String fileId <span style=color:#f92672>=</span> fileIdGenerator<span style=color:#f92672>.</span><span style=color:#a6e22e>apply</span><span style=color:#f92672>(</span>file<span style=color:#f92672>);</span>
+
+        s3client<span style=color:#f92672>.</span><span style=color:#a6e22e>putObject</span><span style=color:#f92672>(</span>
+                file<span style=color:#f92672>.</span><span style=color:#a6e22e>getMetaData</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getFileType</span><span style=color:#f92672>().</span><span style=color:#a6e22e>name</span><span style=color:#f92672>(),</span>
+                fileId<span style=color:#f92672>,</span>
+                file<span style=color:#f92672>.</span><span style=color:#a6e22e>getFileContent</span><span style=color:#f92672>(),</span>
+                <span style=color:#66d9ef>new</span> ObjectMetadata<span style=color:#f92672>()</span>
+        <span style=color:#f92672>);</span>
+
+        <span style=color:#66d9ef>return</span> fileId<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> InputStream <span style=color:#a6e22e>download</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> String fileId<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+       <span style=color:#66d9ef>return</span> getS3client<span style=color:#f92672>().</span><span style=color:#a6e22e>getObject</span><span style=color:#f92672>(...);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h2 id=multiple-stores>Multiple Stores</h2>
+<p>A common pattern in Ostwind is the need to support multiple file stores. Typically, one file store manages most files,
+but some others may require a different object storage backend or have other needs to specialize the behavior of the
+store. The multiplex store in Ostwind manages multiple stores - delegating calls to the appropriate store which is
+responsible for a particular file.</p>
+<p>This is a <a href=https://trello.com/c/bHwNl4sk>feature</a> yet to be offered soon.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://qubitpi.org/>
+<img alt=QubitPi height=100% src=https://ostwind.qubitpi.org/images/logo.png width=100></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>
+My sincere thanks to <a href=https://github.com/yahoo/fili>yahoo/fili</a> &
+        <a href=https://github.com/yahoo/elide>yahoo/elide</a>, which
+gave tremendous amount of guidance on design and development of
+<a href=https://ostwind.qubitpi.org/>Ostwind</a>, and to my former employer, Yahoo, who taught me to love
+software engineering and fundamentally influenced my tech career.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://ostwind.qubitpi.org style=color:grey>
+The contents of this website are © 2025 Ostwind (Jiaqi Liu) under the terms of the Apache License v2.
+</a>
+</div>
+</footer>
+<script src=https://ostwind.qubitpi.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

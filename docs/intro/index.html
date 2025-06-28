@@ -1,0 +1,283 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta content="IE=edge" http-equiv=x-ua-compatible>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<meta content name=description>
+<meta content name=author>
+<title>Getting Started</title>
+<link href=/favicon.ico rel=icon>
+<link href=https://ostwind.qubitpi.org/css/font-awesome.all.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/bootstrap.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/termynal.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/ostwind-theme.css rel=stylesheet>
+<meta content="#da532c" name=msapplication-TileColor>
+<meta content="#ffffff" name=theme-color>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://ostwind.qubitpi.org> <img alt=Ostwind height=35 src=https://ostwind.qubitpi.org/images/logo.svg width=60></a>
+<a class="header-text navbar-brand" href=https://ostwind.qubitpi.org>Ostwind</a>
+<button aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation" class=navbar-toggler data-bs-target=#navbarSupportedContent data-bs-toggle=collapse type=button>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=/Document id=navbarDropdown role=button>
+Documentation
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=/docs/intro>Getting Started</a></li>
+<li><a class=dropdown-item href=/docs/json-api>JSON API</a></li>
+<li><a class=dropdown-item href=/docs/graphql>GraphQL</a></li>
+<li><a class=dropdown-item href=/docs/filestore>File Stores</a></li>
+<li><a class=dropdown-item href=/docs/configuration>Configuration</a></li>
+<li><a class=dropdown-item href=/docs/system-config>System Configuration</a></li>
+<li><a class=dropdown-item href=/docs/monitoring-and-operations>Monitoring and Operations</a></li>
+<li><a class=dropdown-item href=/docs/logging>Logging Guidelines</a></li>
+<li><a class=dropdown-item href=/docs/kpi>Key Performance Indicators</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/docs/glossary>Glossary</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=https://ostwind.qubitpi.org/apidocs/ id=navbarDropdown role=button>
+API
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=/general/downloads id=navbarDropdown role=button>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Contributor Guide
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/intro/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/di/>Dependency Injection</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/test/>Testing</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/metastore/>Meta Stores</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/local-swift/>Swift (Local)</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Blogs
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/blog/yahoo-object-storage/>Yahoo
+Cloud Object Store</a></li>
+</ul>
+</li>
+<li>
+<form action=/search class=search-bar method=get>
+<input class=search-input id=search-query name=q placeholder=Search... type=search>
+<button class=search-button type=submit>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<p>The easiest way to get started with Ostwind is to use the <a href=https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-books>Ostwind Book App Starter</a>. The starter bundles all of the
+dependencies we will need to stand up a web service. This tutorial uses the starter, and all of the code is
+<a href=https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-books>available here</a>. We will deploy and play with this example locally</p>
+<h2 id=docker-compose>Docker Compose</h2>
+<p>Ostwind Compose is a tool for setting up and running a full-fledged Ostwind instance Docker application. With Compose,
+an Ostwind application is backed by a real MySQL meta store and an in-memory OpenStack Swift service. With a single
+command, we will be able to create and start all the services from Ostwind. <strong>It&rsquo;s the quickest approach to get a taste
+of Ostwind</strong>.</p>
+<p>Ostwind Compose works in all environments: production, staging, development, testing, as well as CI workflows. You can
+learn more about it from <a href=https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-books>source code</a>.</p>
+<p>Using Ostwind Compose is basically a three-step process:</p>
+<ol>
+<li>Package Ostwind at project root with <code>mvn clean package</code></li>
+<li>cd into <a href=https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-books>compose top directory</a> and fire-up <code>docker compose up</code></li>
+<li>hit Ostwind at <code>http://localhost:8080/v1/metadata/graphql?query={metaData(fileId:%221%22){fileName}}</code> with your favorite
+browser</li>
+</ol>
+<p>For more information about the Ostwind Compose the <a href=https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-books>Compose file definition</a>.</p>
+<p>Ostwind Compose has ability for managing the whole lifecycle of an Ostwind application:</p>
+<ul>
+<li>Start, stop, and rebuild services</li>
+<li>View the status of running services</li>
+<li>Stream the log output of running services</li>
+<li>Run a one-off command on a service</li>
+</ul>
+<h3 id=extending-ostwind-compose>Extending Ostwind Compose</h3>
+<p>Happy with Ostwind? You can go further with productionizing Ostwind from
+here </p>
+<style>.admonition{border-radius:5px;padding:0;border-left:5px solid #00bcf6;box-shadow:0 0 .5rem .2rem #00000025}.admonition-title-container{background-color:#00bcf6;border-top-right-radius:5px}.admonition-title{font-weight:bolder;font-size:large;backdrop-filter:grayscale(50%)brightness(150%);-webkit-backdrop-filter:grayscale(50%)brightness(150%);padding:5px 0 5px 30px;border-top-right-radius:5px}@media(prefers-color-scheme:dark){.admonition-title{backdrop-filter:grayscale(40%)brightness(40%);-webkit-backdrop-filter:grayscale(40%)brightness(40%)}}.admonition-content{padding:10px 0 10px 15px}</style>
+<div class=admonition style="border-left:5px solid #0e8">
+<div class=admonition-title-container style=background-color:#0e8>
+<div class=admonition-title>
+Business Scenario Testing
+</div>
+</div>
+<div class=admonition-content>Ostwind also comes with
+<a href=https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-acceptance-tests>an example acceptance testing module</a>
+which can be pull out separately for our own project needs.</div>
+</div>
+<p>If you would like to go from basic Ostwind Compose setup and changed anything, rebuild it with</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker compose up --build --force-recreate
+</code></pre></div><p>Ostwind Compose has been tested with <a href=https://hub.docker.com/_/mysql>MySQL 5.7</a> connected using
+<em>mysql-connector-java 5.1.38</em> within Ostwind running on
+<a href=https://download.eclipse.org/oomph/jetty/release/11.0.15/>Jetty 11.0.15</a>.</p>
+<div class=admonition style="border-left:5px solid #ff4545">
+<div class=admonition-title-container style=background-color:#ff4545>
+<div class=admonition-title>
+Warning
+</div>
+</div>
+<div class=admonition-content>Please take extra caution with MySQL 8, as some of the features might not work properly on Ostwind Compose. In
+addition, make sure <code>?autoReconnect=true&useSSL=false</code> is in connection string. For example,
+<code>jdbc:mysql://db:3306/Ostwind?autoReconnect=true&useSSL=false</code></div>
+</div>
+<h3 id=mysql-container-meta-store>MySQL Container (Meta Store)</h3>
+<p>Ostwind Compose uses MySQL 5 as the backing meta store, i.e. the database that DataFetcher is talking to for file
+metadata.</p>
+<p>The MySQL instance is network-reachable at 3306 inside compose and 3305 for host (wo choose 3305 just in case 3306 has
+already been occupied)</p>
+<h3 id=networking-in-ostwind-compose>Networking in Ostwind Compose</h3>
+<p>By default Ostwind Compose sets up a single
+<a href=https://docs.docker.com/engine/reference/commandline/network_create/>network</a>. Both Ostwind and MySQL container
+services join this default network and is both reachable by other containers on that network, and discoverable by them
+at a hostname identical to the container name.</p>
+<p>For example, inside <a href=https://github.com/QubitPi/Ostwind/tree/master/ostwind-examples/ostwind-example-books/docker-compose.yml>docker-compose.yml</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>services</span>:
+  <span style=color:#f92672>web</span>:
+    <span style=color:#f92672>build</span>: <span style=color:#ae81ff>.</span>
+    <span style=color:#f92672>ports</span>:
+      - <span style=color:#e6db74>&#34;8080:8080&#34;</span>
+    <span style=color:#f92672>depends_on</span>:
+      <span style=color:#f92672>db</span>:
+        <span style=color:#f92672>condition</span>: <span style=color:#ae81ff>service_healthy</span>
+  <span style=color:#f92672>db</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#e6db74>&#34;mysql:5.7&#34;</span>
+    <span style=color:#f92672>ports</span>:
+      - <span style=color:#e6db74>&#34;3305:3306&#34;</span>
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#e6db74>&#34;./mysql-init.sql:/docker-entrypoint-initdb.d/mysql-init.sql&#34;</span>
+    <span style=color:#f92672>environment</span>:
+      <span style=color:#f92672>MYSQL_ROOT_PASSWORD</span>: <span style=color:#ae81ff>root</span>
+    <span style=color:#f92672>healthcheck</span>:
+      <span style=color:#f92672>test</span>: <span style=color:#ae81ff>mysqladmin ping -h localhost -u root -proot</span>
+      <span style=color:#f92672>timeout</span>: <span style=color:#ae81ff>3s</span>
+      <span style=color:#f92672>retries</span>: <span style=color:#ae81ff>3</span>
+</code></pre></div><p>When you run docker compose up, the following happens:</p>
+<ul>
+<li>A network called &ldquo;ostwind-example-books&rdquo; is created.</li>
+<li>An Ostwind container is created using ostwind-example-books configuration. It joins the network &ldquo;ostwind-example-books&rdquo;
+under the name &ldquo;web&rdquo;.</li>
+<li>An MySQL container is created using <code>db</code>&rsquo;s configuration. It joins the network &ldquo;ostwind-example-books&rdquo; under the name
+&ldquo;db&rdquo;.</li>
+</ul>
+<p>Each container can now look up the hostname <code>web</code> or <code>db</code> and get back the appropriate container&rsquo;s IP address. For
+example, web&rsquo;s application code could connect to the URL <code>mysql://db:3306</code> and start using the MySQL database.</p>
+<h2 id=production>Production</h2>
+<h3 id=creating-a-deployable-war-file>Creating a Deployable War File</h3>
+<p>We build the &ldquo;.war&rdquo; File first by navigating to ostwind project root and compile the project</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cd ostwind/
+mvn clean package
+</code></pre></div><p>Successfully executing the command above shall generate a &ldquo;.war&rdquo; file under
+<code>ostwind/ostwind-examples/ostwind-example-books/target/ostwind-example-books-&lt;ostwind-version>.war</code>, where is the version of
+the ostwind, for example <code>1.0.2</code>, please make sure to replace <code>&lt;ostwind-version></code> with one of
+<a href=https://central.sonatype.com/namespace/io.github.qubitpi.ostwind>our release versions</a>.</p>
+<h3 id=setting-up-jetty>Setting Up Jetty</h3>
+<h4 id=downloading-jetty>Downloading Jetty</h4>
+<p>At <a href=https://www.eclipse.org/jetty/download.php>download page</a>, pick up a <code>.tgz</code> distribution, we will use
+&ldquo;9.4.44.v20210927&rdquo; release as an example:</p>
+<p><img src=../../images/download-jetty.png alt="Error loading download-jetty.png"></p>
+<h4 id=installing-jetty>Installing Jetty</h4>
+<p>Put the <code>tar.gz</code> file into a preferred location as the installation path and extract the Jetty binary using</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>tar -czvf jetty-distribution-9.4.44.v20210927.tar.gz
+</code></pre></div><h4 id=dropping-the-war-file-into-the-jetty-webapp>Dropping the &ldquo;.war&rdquo; File into the Jetty &ldquo;webapp&rdquo;</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cd jetty-distribution-9.4.44.v20210927/webapps/
+mv /path/to/.war .
+</code></pre></div><p>Then rename the war file to &ldquo;ROOT.war&rdquo;, the reason of which is so that the context path would be root context - <code>/</code>,
+which is a common industry standard.</p>
+<div class=admonition style="border-left:5px solid #0e8">
+<div class=admonition-title-container style=background-color:#0e8>
+<div class=admonition-title>
+Setting a Context Path
+</div>
+</div>
+<div class=admonition-content><p>The context path is the prefix of a URL path that is used to select the context(s) to which an incoming request is
+passed. Typically a URL in a Java servlet server is of the format
+<code>http://hostname.com/contextPath/servletPath/pathInfo</code>, where each of the path elements can be zero or more &ldquo;/&rdquo;
+separated elements. If there is no context path, the context is referred to as the <strong>root context</strong>. The root context
+must be configured as &ldquo;/&rdquo; but is reported as the empty string by the servlet
+<a href=https://www.eclipse.org/jetty/>API <code>getContextPath()</code> method</a>.</p>
+<p>How we set the context path depends on how we deploy the web application (or <code>ContextHandler</code>). In this case, we
+configure the context path by <strong>naming convention</strong>:</p>
+<p>If a web application is deployed using the WebAppProvider of the DeploymentManager without an XML IoC file, then <strong>the
+name of the WAR file is used to set the context path</strong>:</p>
+<ul>
+<li>If the WAR file is named &ldquo;myapp.war&rdquo;, then the context will be deployed with a context path of <code>/myapp</code></li>
+<li><strong>If the WAR file is named &ldquo;ROOT.WAR&rdquo; (or any case insensitive variation), then the context will be deployed with a
+context path of <code>/</code></strong></li>
+<li>If the WAR file is named &ldquo;ROOT-foobar.war&rdquo; (or any case insensitive variation), then the context will be deployed
+with a context path of / and a
+<a href=https://www.eclipse.org/jetty/documentation/jetty-9/index.html#configuring-virtual-hosts>virtual host</a> of &ldquo;foobar&rdquo;</li>
+</ul>
+</div>
+</div>
+<h3 id=starting-the-webservice>Starting the Webservice</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cd ../
+java -jar start.jar
+</code></pre></div>
+<div class=admonition style="border-left:5px solid #0e8">
+<div class=admonition-title-container style=background-color:#0e8>
+<div class=admonition-title>
+Tip
+</div>
+</div>
+<div class=admonition-content><p>To specify the port that container exposes for our app, we could use</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>java -jar start.jar -Djetty.port<span style=color:#f92672>=</span><span style=color:#ae81ff>8081</span>
+</code></pre></div></div>
+</div>
+<h3 id=firing-the-first-request>Firing The First Request</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>brew install --cask graphiql
+</code></pre></div>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://qubitpi.org/>
+<img alt=QubitPi height=100% src=https://ostwind.qubitpi.org/images/logo.png width=100></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>
+My sincere thanks to <a href=https://github.com/yahoo/fili>yahoo/fili</a> &
+        <a href=https://github.com/yahoo/elide>yahoo/elide</a>, which
+gave tremendous amount of guidance on design and development of
+<a href=https://ostwind.qubitpi.org/>Ostwind</a>, and to my former employer, Yahoo, who taught me to love
+software engineering and fundamentally influenced my tech career.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://ostwind.qubitpi.org style=color:grey>
+The contents of this website are © 2025 Ostwind (Jiaqi Liu) under the terms of the Apache License v2.
+</a>
+</div>
+</footer>
+<script src=https://ostwind.qubitpi.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>
