@@ -1,0 +1,195 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta content="IE=edge" http-equiv=x-ua-compatible>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<meta content name=description>
+<meta content name=author>
+<title>Monitoring and Operations</title>
+<link href=/favicon.ico rel=icon>
+<link href=https://ostwind.qubitpi.org/css/font-awesome.all.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/bootstrap.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/termynal.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/ostwind-theme.css rel=stylesheet>
+<meta content="#da532c" name=msapplication-TileColor>
+<meta content="#ffffff" name=theme-color>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://ostwind.qubitpi.org> <img alt=Ostwind height=35 src=https://ostwind.qubitpi.org/images/logo.svg width=60></a>
+<a class="header-text navbar-brand" href=https://ostwind.qubitpi.org>Ostwind</a>
+<button aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation" class=navbar-toggler data-bs-target=#navbarSupportedContent data-bs-toggle=collapse type=button>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=/Document id=navbarDropdown role=button>
+Documentation
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=/docs/intro>Getting Started</a></li>
+<li><a class=dropdown-item href=/docs/json-api>JSON API</a></li>
+<li><a class=dropdown-item href=/docs/graphql>GraphQL</a></li>
+<li><a class=dropdown-item href=/docs/filestore>File Stores</a></li>
+<li><a class=dropdown-item href=/docs/configuration>Configuration</a></li>
+<li><a class=dropdown-item href=/docs/system-config>System Configuration</a></li>
+<li><a class=dropdown-item href=/docs/monitoring-and-operations>Monitoring and Operations</a></li>
+<li><a class=dropdown-item href=/docs/logging>Logging Guidelines</a></li>
+<li><a class=dropdown-item href=/docs/kpi>Key Performance Indicators</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/docs/glossary>Glossary</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=https://ostwind.qubitpi.org/apidocs/ id=navbarDropdown role=button>
+API
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=/general/downloads id=navbarDropdown role=button>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Contributor Guide
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/intro/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/di/>Dependency Injection</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/test/>Testing</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/metastore/>Meta Stores</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/local-swift/>Swift (Local)</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Blogs
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/blog/yahoo-object-storage/>Yahoo
+Cloud Object Store</a></li>
+</ul>
+</li>
+<li>
+<form action=/search class=search-bar method=get>
+<input class=search-input id=search-query name=q placeholder=Search... type=search>
+<button class=search-button type=submit>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<p>Ostwind was built from the start to be easy to operate and debug. There are 3 primary ways in which Ostwind makes
+debugging and gathering information about how it&rsquo;s running easy.</p>
+<h2 id=logs>Logs</h2>
+<p>Ostwind has <a href=logging-guidelines>strict guidelines</a> around
+what information should be logged, when it should be logged, and what level it should be logged at. Here&rsquo;s a brief
+summary of the log levels and what they contain:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Error</td>
+<td>System-caused problem preventing correct results for requests. Major, &ldquo;wake up a human&rdquo; events.</td>
+</tr>
+<tr>
+<td>Warn</td>
+<td>Something&rsquo;s wrong, like no caching, but can still correctly respond to requests. A human should investigate.</td>
+</tr>
+<tr>
+<td>Info</td>
+<td>Working as expected. Information needed for monitoring. Answers &ldquo;Are things healthy.&rdquo;</td>
+</tr>
+<tr>
+<td>Debug</td>
+<td>High-level data flow and errors. Rich insight, but not overwhelming. Per-request errors, but not happy-path.</td>
+</tr>
+<tr>
+<td>Trace</td>
+<td>Most verbose. Full data flow. Not intended to be used in production, or very rarely.</td>
+</tr>
+</tbody>
+</table>
+<h3 id=request-log>Request Log</h3>
+<p>Ostwind also has a tracing mechanism that records and collects information about each request as it flows through the
+system. This information is called the <strong>Request Log</strong> and it gets logged at the <a href=logging-guidelines#Info>INFO</a> level
+when the response for a request is sent.</p>
+<p>The Request Log is modular, and has a number of different components, depending on which type of request is being
+served. All Request Logs contain a Durations, Threads, and Preface component at the beginning, an Epilogue component at
+the end, and other components that are added as requests are processed will get added in between in the order they are
+added. If desired, this ordering can be controlled by setting the <code>requestlog_loginfo_order</code> property.</p>
+<p>As part of the Request Log tracing, each request is assigned a UUID that which shows up in the INFO line for Request Log
+log lines. This UUID is also made available on <em>every</em> log line via <a href=http://www.slf4j.org/api/org/slf4j/MDC.html>MDC</a>
+under the key <code>logid</code> so that all log lines emitted while processing a request can be easily collected together. To
+surface this UUID in all log lines emitted while processing a request, your log format needs to include a reference to
+the UUID value in MDC. Here are some examples for common logging frameworks:</p>
+<p><a href=http://logback.qos.ch/manual/layouts.html#mdc>Logback</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>%mdc<span style=color:#f92672>{</span>logid:-unset<span style=color:#f92672>}</span>
+%X<span style=color:#f92672>{</span>logid:-unset<span style=color:#f92672>}</span>
+</code></pre></div><p>Note that the <code>-unset</code> sets the default value to <code>unset</code> if there is no <code>logid</code> value present in MDC, which is possible
+for logs emitted outside of processing a request, like background processes.</p>
+<p><a href=https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html>Log4J</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>%X<span style=color:#f92672>{</span>logid<span style=color:#f92672>}</span>
+</code></pre></div><p><a href=https://logging.apache.org/log4j/2.x/manual/layouts.html>Log4J2</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>%X<span style=color:#f92672>{</span>logid<span style=color:#f92672>}</span>
+%mdc<span style=color:#f92672>{</span>logid<span style=color:#f92672>}</span>
+%MDC<span style=color:#f92672>{</span>logid<span style=color:#f92672>}</span>
+</code></pre></div><h2 id=metrics>Metrics</h2>
+<p>Ostwind uses the <a href=http://metrics.dropwizard.io/>Metrics</a> library (formerly Dropwizard Metrics) for gathering and
+reporting on runtime metrics and indicators. Typically, these are exposed through an admin servlet, and if that&rsquo;s
+enabled then there is <a href=kpi>a list of Key Performance Indicators (KPIs)</a> that are exposed through the <code>/metrics</code>
+endpoint. The KPI document doesn&rsquo;t go into detail about what each of the KPIs mean, but it gives a rough overview of why
+they matter.</p>
+<h2 id=health-checks>Health Checks</h2>
+<p>Ostwind also uses the Metrics library for implementing health checks. These are also exposed through the admin servlet,
+just like metrics, at <code>/status</code>. Each of the health checks has a message and a status, and if any of the checks fail,
+the HTTP Status Code for that <code>/status</code> request will be a 500 instead of a 200 to indicate the system is unhealthy.</p>
+<p>These health checks are also used to gate <code>/file</code> and <code>/metadata</code> requests, with Ostwind returning
+<code>503 Service Unavailable</code> if it doesn&rsquo;t think it is healthy.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://qubitpi.org/>
+<img alt=QubitPi height=100% src=https://ostwind.qubitpi.org/images/logo.png width=100></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>
+My sincere thanks to <a href=https://github.com/yahoo/fili>yahoo/fili</a> &
+        <a href=https://github.com/yahoo/elide>yahoo/elide</a>, which
+gave tremendous amount of guidance on design and development of
+<a href=https://ostwind.qubitpi.org/>Ostwind</a>, and to my former employer, Yahoo, who taught me to love
+software engineering and fundamentally influenced my tech career.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://ostwind.qubitpi.org style=color:grey>
+The contents of this website are © 2025 Ostwind (Jiaqi Liu) under the terms of the Apache License v2.
+</a>
+</div>
+</footer>
+<script src=https://ostwind.qubitpi.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

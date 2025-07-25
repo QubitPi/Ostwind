@@ -1,0 +1,165 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta content="IE=edge" http-equiv=x-ua-compatible>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<meta content name=description>
+<meta content name=author>
+<title>Spinning Up A Local Swift Instance</title>
+<link href=/favicon.ico rel=icon>
+<link href=https://ostwind.qubitpi.org/css/font-awesome.all.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/bootstrap.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/termynal.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/ostwind-theme.css rel=stylesheet>
+<meta content="#da532c" name=msapplication-TileColor>
+<meta content="#ffffff" name=theme-color>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://ostwind.qubitpi.org> <img alt=Ostwind height=35 src=https://ostwind.qubitpi.org/images/logo.svg width=60></a>
+<a class="header-text navbar-brand" href=https://ostwind.qubitpi.org>Ostwind</a>
+<button aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation" class=navbar-toggler data-bs-target=#navbarSupportedContent data-bs-toggle=collapse type=button>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=/Document id=navbarDropdown role=button>
+Documentation
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=/docs/intro>Getting Started</a></li>
+<li><a class=dropdown-item href=/docs/json-api>JSON API</a></li>
+<li><a class=dropdown-item href=/docs/graphql>GraphQL</a></li>
+<li><a class=dropdown-item href=/docs/filestore>File Stores</a></li>
+<li><a class=dropdown-item href=/docs/configuration>Configuration</a></li>
+<li><a class=dropdown-item href=/docs/system-config>System Configuration</a></li>
+<li><a class=dropdown-item href=/docs/monitoring-and-operations>Monitoring and Operations</a></li>
+<li><a class=dropdown-item href=/docs/logging>Logging Guidelines</a></li>
+<li><a class=dropdown-item href=/docs/kpi>Key Performance Indicators</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/docs/glossary>Glossary</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=https://ostwind.qubitpi.org/apidocs/ id=navbarDropdown role=button>
+API
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=/general/downloads id=navbarDropdown role=button>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Contributor Guide
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/intro/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/di/>Dependency Injection</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/test/>Testing</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/metastore/>Meta Stores</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/local-swift/>Swift (Local)</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Blogs
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/blog/yahoo-object-storage/>Yahoo
+Cloud Object Store</a></li>
+</ul>
+</li>
+<li>
+<form action=/search class=search-bar method=get>
+<input class=search-input id=search-query name=q placeholder=Search... type=search>
+<button class=search-button type=submit>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<p>In this quickstart, we will download a <a href=https://hub.docker.com/r/fnndsc/docker-swift-onlyone>OpenStack Swift Image</a>,
+spinup a container on a single machine, upload a test file, and download that file.</p>
+<h2 id=prerequisites>Prerequisites</h2>
+<p>You will need:</p>
+<ul>
+<li>Docker command line tool</li>
+<li>Python 3</li>
+</ul>
+<h2 id=getting-started>Getting started</h2>
+<p>To download the image, issue the following commands in your terminal:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker pull fnndsc/docker-swift-onlyone
+</code></pre></div><h2 id=setup-volume-for-swift>Setup Volume for Swift</h2>
+<blockquote>
+<p><a href=https://docs.docker.com/storage/volumes/>Volumes</a> are the preferred mechanism for persisting data generated by and
+used by Docker containers.</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker volume create swift_storage
+</code></pre></div><h2 id=start-up-container-instance>Start up Container Instance</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run -d --name swift-onlyone -p 12345:8080 -v swift_storage:/srv -t fnndsc/docker-swift-onlyone
+</code></pre></div><h2 id=setup-swift-client>Setup Swift Client</h2>
+<p>Querying Swift through command line requires <a href=https://pypi.org/project/python-swiftclient/>python-swiftclient</a>. We&rsquo;ll
+need to install it:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pip3 pip install python-swiftclient
+</code></pre></div><blockquote>
+<p>If you are on Mac OS, which has Apple Swift overriding Openstack swift package, explicitly invoking swiftclient as
+/usr/bin/local/swift works.</p>
+<p>In case the absolute path is not <code>/usr/bin/local/swift</code>, try <code>sudo find / -name swift</code> which will give you a list
+that contains the right > executable path</p>
+<p>For example, <code>/usr/local/bin/swift -A http://127.0.0.1:12345/auth/v1.0 -U chris:chris1234 -K testing stat</code> should
+work. We will keep using <code>/usr/local/bin/swift</code> afterwards</p>
+</blockquote>
+<h2 id=create-upload-and-download-a-test-file>Create, Upload, and Download a Test File</h2>
+<p>We&rsquo;ve create an empty file called <code>test-file.txt</code> to get you started:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>touch test-file.txt
+</code></pre></div><p>To upload this file onto Swift:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/usr/local/bin/swift -A http://127.0.0.1:12345/auth/v1.0 -U chris:chris1234 -K testing upload --object-name
+test-file.txt user_uploads ./test-file.txt
+</code></pre></div><p>which will print the name of the file if the upload was successful:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>test-file.txt
+</code></pre></div><p>To download that file:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/usr/local/bin/swift -A http://127.0.0.1:12345/auth/v1.0 -U chris:chris1234 -K testing download user_uploads test-file.txt
+</code></pre></div>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://qubitpi.org/>
+<img alt=QubitPi height=100% src=https://ostwind.qubitpi.org/images/logo.png width=100></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>
+My sincere thanks to <a href=https://github.com/yahoo/fili>yahoo/fili</a> &
+        <a href=https://github.com/yahoo/elide>yahoo/elide</a>, which
+gave tremendous amount of guidance on design and development of
+<a href=https://ostwind.qubitpi.org/>Ostwind</a>, and to my former employer, Yahoo, who taught me to love
+software engineering and fundamentally influenced my tech career.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://ostwind.qubitpi.org style=color:grey>
+The contents of this website are © 2025 Ostwind (Jiaqi Liu) under the terms of the Apache License v2.
+</a>
+</div>
+</footer>
+<script src=https://ostwind.qubitpi.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

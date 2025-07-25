@@ -1,0 +1,269 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta content="IE=edge" http-equiv=x-ua-compatible>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<meta content name=description>
+<meta content name=author>
+<title>Amazon S3 Concepts</title>
+<link href=/favicon.ico rel=icon>
+<link href=https://ostwind.qubitpi.org/css/font-awesome.all.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/bootstrap.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/termynal.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/ostwind-theme.css rel=stylesheet>
+<meta content="#da532c" name=msapplication-TileColor>
+<meta content="#ffffff" name=theme-color>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://ostwind.qubitpi.org> <img alt=Ostwind height=35 src=https://ostwind.qubitpi.org/images/logo.svg width=60></a>
+<a class="header-text navbar-brand" href=https://ostwind.qubitpi.org>Ostwind</a>
+<button aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation" class=navbar-toggler data-bs-target=#navbarSupportedContent data-bs-toggle=collapse type=button>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=/Document id=navbarDropdown role=button>
+Documentation
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=/docs/intro>Getting Started</a></li>
+<li><a class=dropdown-item href=/docs/json-api>JSON API</a></li>
+<li><a class=dropdown-item href=/docs/graphql>GraphQL</a></li>
+<li><a class=dropdown-item href=/docs/filestore>File Stores</a></li>
+<li><a class=dropdown-item href=/docs/configuration>Configuration</a></li>
+<li><a class=dropdown-item href=/docs/system-config>System Configuration</a></li>
+<li><a class=dropdown-item href=/docs/monitoring-and-operations>Monitoring and Operations</a></li>
+<li><a class=dropdown-item href=/docs/logging>Logging Guidelines</a></li>
+<li><a class=dropdown-item href=/docs/kpi>Key Performance Indicators</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/docs/glossary>Glossary</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=https://ostwind.qubitpi.org/apidocs/ id=navbarDropdown role=button>
+API
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=/general/downloads id=navbarDropdown role=button>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Contributor Guide
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/intro/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/di/>Dependency Injection</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/test/>Testing</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/metastore/>Meta Stores</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/local-swift/>Swift (Local)</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Blogs
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/blog/yahoo-object-storage/>Yahoo
+Cloud Object Store</a></li>
+</ul>
+</li>
+<li>
+<form action=/search class=search-bar method=get>
+<input class=search-input id=search-query name=q placeholder=Search... type=search>
+<button class=search-button type=submit>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h2 id=buckets>Buckets</h2>
+<p>A bucket is a container for objects stored in Amazon S3. Every object is contained in a bucket. For example, if the
+object named <code>photos/puppy.jpg</code> is stored in the <code>awsexamplebucket1</code> bucket in the US West (Oregon) Region, then it
+is addressable using the URL <code>https://awsexamplebucket1.s3.us-west-2.amazonaws.com/photos/puppy.jpg</code>.</p>
+<p>Buckets serve several purposes:</p>
+<ul>
+<li>They organize the Amazon S3 namespace at the highest level.</li>
+<li>They identify the account responsible for storage and data transfer charges.</li>
+<li>They play a role in access control.</li>
+<li>They serve as the unit of aggregation for usage reporting.</li>
+</ul>
+<p>You can configure buckets so that they are created in a specific AWS Region. For more information, see
+<a href=https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro>Accessing a Bucket</a>. You can
+also configure a bucket so that every time an object is added to it, Amazon S3 generates a unique version ID and assigns
+it to the object. For more information, see
+<a href=https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html>Using Versioning</a>.</p>
+<p>For more information about buckets, see
+<a href=https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html>Working with Amazon S3 Buckets</a>.</p>
+<h2 id=objects>Objects</h2>
+<p>Objects are the fundamental entities stored in Amazon S3. Objects consist of object data and metadata. The data portion
+is opaque to Amazon S3. The metadata is a set of name-value pairs that describe the object. These include some default
+metadata, such as the date last modified, and standard HTTP metadata, such as <code>Content-Type</code>. You can also specify
+custom metadata at the time the object is stored.</p>
+<p>An object is uniquely identified within a bucket by a key (name) and a version ID. For more information, see
+<a href=https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#BasicsKeys>Keys</a> and
+<a href=https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html>Using Versioning</a>.</p>
+<h2 id=keys>Keys</h2>
+<p>A key is the unique identifier for an object within a bucket. Every object in a bucket has exactly one key. The
+combination of a bucket, key, and version ID uniquely identify each object. So you can think of Amazon S3 as a basic
+data map between &ldquo;bucket + key + version&rdquo; and the object itself. Every object in Amazon S3 can be uniquely addressed
+through the combination of the web service endpoint, bucket name, key, and optionally, a version. For example, in the
+URL <code>https://doc.s3.amazonaws.com/2006-03-01/AmazonS3.wsdl</code>, &ldquo;<code>doc</code>&rdquo; is the name of the bucket and
+&ldquo;<code>2006-03-01/AmazonS3.wsdl</code>&rdquo; is the key.</p>
+<p>For more information about object keys, see
+<a href=https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys>Object Keys</a>.</p>
+<h2 id=regions>Regions</h2>
+<p>You can choose the geographical AWS Region where Amazon S3 will store the buckets that you create. You might choose a
+Region to optimize latency, minimize costs, or address regulatory requirements. Objects stored in a Region never leave
+the Region unless you explicitly transfer them to another Region. For example, objects stored in the Europe (Ireland)
+Region never leave it.</p>
+<h2 id=amazon-s3-data-consistency-model>Amazon S3 Data Consistency Model</h2>
+<p>Amazon S3 provides read-after-write consistency for PUTS of new objects in your S3 bucket in all Regions with one
+caveat. The caveat is that if you make a HEAD or GET request to a key name before the object is created, then create
+the object shortly after that, a subsequent GET might not return the object due to eventual consistency.</p>
+<p>Amazon S3 offers eventual consistency for overwrite PUTS and DELETES in all Regions.</p>
+<p><strong>Updates to a single key are atomic</strong>. For example, if you PUT to an existing key, a subsequent read might return the
+old data or the updated data, but it never returns corrupted or partial data.</p>
+<p>Amazon S3 achieves high availability by replicating data across multiple servers within AWS data centers. If a PUT
+request is successful, your data is safely stored. However, information about the changes must replicate across Amazon
+S3, which can take some time, and so you might observe the following behaviors:</p>
+<ul>
+<li>A process writes a new object to Amazon S3 and immediately lists keys within its bucket. Until the change is fully
+propagated, the object might not appear in the list.</li>
+<li>A process replaces an existing object and immediately tries to read it. Until the change is fully propagated, Amazon
+S3 might return the previous data.</li>
+<li>A process deletes an existing object and immediately tries to read it. Until the deletion is fully propagated, Amazon
+S3 might return the deleted data.</li>
+<li>A process deletes an existing object and immediately lists keys within its bucket. Until the deletion is fully
+propagated, Amazon S3 might list the deleted object.</li>
+</ul>
+<p><strong>Updates are key-based. There is no way to make atomic updates across keys</strong>. For example, you cannot make the update
+of one key dependent on the update of another key unless you design this functionality into your application.</p>
+<p>Buckets have a similar consistency model, with the same caveats. For example, if you delete a bucket and immediately
+list all buckets, Amazon S3 might still appear in the list.</p>
+<p>The following table describes the characteristics of an eventually consistent read and a consistent read:</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:center>Eventually consistent read</th>
+<th style=text-align:center>Consistent read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:center>Stale reads possible</td>
+<td style=text-align:center>No stale reads</td>
+</tr>
+<tr>
+<td style=text-align:center>Lowest read latency</td>
+<td style=text-align:center>Potential higher read latency</td>
+</tr>
+<tr>
+<td style=text-align:center>Highest read throughput</td>
+<td style=text-align:center>Potential lower read throughput</td>
+</tr>
+</tbody>
+</table>
+<h3 id=concurrent-applications>Concurrent applications</h3>
+<p>In this example, both W1 (write 1) and W2 (write 2) complete before the start of R1 (read 1) and R2 (read 2). For a
+consistent read, R1 and R2 both return <code>color = ruby</code>. For an eventually consistent read, R1 and R2 might return
+<code>color = red</code> or <code>color = ruby</code> depending on the amount of time that has elapsed.</p>
+<p><img src=img/consistency1.png alt="Consistency Example 1"></p>
+<p>In the next example, W2 does not complete before the start of R1. Therefore, R1 might return <code>color = ruby</code> or
+<code>color = garnet</code> for either a consistent read or an eventually consistent read. Also, depending on the amount of time
+that has elapsed, an eventually consistent read might return no results.</p>
+<p>For a consistent read, R2 returns <code>color = garnet</code>. For an eventually consistent read, R2 might return
+<code>color = ruby</code> or color = garnet depending on the amount of time that has elapsed.</p>
+<p><img src=img/consistency2.png alt="Consistency Example 2"></p>
+<p>In the last example, Client 2 performs W2 before Amazon S3 returns a success for W1, so the outcome of the final value
+is unknown (<code>color = garnet</code> or <code>color = brick</code>). Any subsequent reads (consistent read or eventually consistent)
+might return either value. Also, depending on the amount of time that has elapsed, an eventually consistent read might
+return no results.</p>
+<p><img src=img/consistency3.png alt="Consistency Example 3"></p>
+<h2 id=prefix---listing-keys-hierarchically-using-a-prefix-and-delimiter>Prefix - Listing Keys Hierarchically Using a Prefix and Delimiter</h2>
+<p>A &ldquo;prefix&rdquo;, or &ldquo;key prefix&rdquo; is a <strong>logical</strong> grouping of the objects in a bucket. The prefix value is similar to a
+directory name that enables you to store similar data under the same directory in a bucket. <strong>Note that Amazon S3 does
+not have the concept of &ldquo;directory&rdquo;</strong>. There is only objects whose keys are prefixed in a way that looks like a
+&ldquo;directory&rdquo;. For example</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>zoo/west-side/fish/little-fish.png
+</code></pre></div><p>There is no such directories called <code>zoo</code>, <code>west-side</code>, <code>fish</code>. In this case the :ref:<code>key &lt;concept-keys></code> for the
+image <code>little-fish.png</code> is <code>zoo/west-side/fish/</code>, a string essentially.</p>
+<p>The prefix and delimiter parameters limit the kind of results returned by a list operation. The prefix limits the
+results to only those keys that begin with the specified prefix. The delimiter causes a list operation to roll up all
+the keys that share a common prefix into a single summary list result.</p>
+<p>The purpose of the prefix and delimiter parameters is to help you organize and then browse your keys hierarchically. To
+do this, first pick a delimiter for your bucket, such as slash (/), that doesn&rsquo;t occur in any of your anticipated key
+names. Next, construct your key names by concatenating all containing levels of the hierarchy, separating each level
+with the delimiter.</p>
+<p>For example, if you were storing information about cities, you might naturally organize them by continent, then by
+country, then by state. Because these names do not usually contain punctuation, you might select slash (/) as the
+delimiter. The following examples use a slash (/) delimiter.</p>
+<ul>
+<li>Europe/France/Nouvelle-Aquitaine/Bordeaux</li>
+<li>North America/Canada/Quebec/Montreal</li>
+<li>North America/USA/Washington/Bellevue</li>
+<li>North America/USA/Washington/Seattle</li>
+</ul>
+<p>By using <code>Prefix</code> and <code>Delimiter</code> with the list operation, you can use the hierarchy you&rsquo;ve created to list your
+data. For example, to list all the states in USA, set <code>Delimiter='/'</code> and <code>Prefix='North America/USA/'</code>.</p>
+<p>A list request with a delimiter lets you browse your hierarchy at just one level, skipping over and summarizing the
+(possibly millions of) keys nested at deeper levels. For example, assume you have a bucket (<code>ExampleBucket</code>) with the
+following keys.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>sample.jpg
+<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span>photos/2006/January/sample.jpg
+<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span>photos/2006/February/sample2.jpg
+<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span>photos/2006/February/sample3.jpg
+<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span>photos/2006/February/sample4.jpg
+</code></pre></div><p>The sample bucket has only the <code>sample.jpg</code> object at the root level. To list only the root level objects in the
+bucket you send a GET request on the bucket with <code>"/"</code> delimiter character. In response, Amazon S3 returns the
+<code>sample.jpg</code> object key because it does not contain the <code>"/"</code> delimiter character. All other keys contain the
+delimiter character. Amazon S3 groups these keys and return a single <code>CommonPrefixes</code> element with prefix value
+<code>photos/</code> that is a substring from the beginning of these keys to the first occurrence of the specified delimiter.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://qubitpi.org/>
+<img alt=QubitPi height=100% src=https://ostwind.qubitpi.org/images/logo.png width=100></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>
+My sincere thanks to <a href=https://github.com/yahoo/fili>yahoo/fili</a> &
+        <a href=https://github.com/yahoo/elide>yahoo/elide</a>, which
+gave tremendous amount of guidance on design and development of
+<a href=https://ostwind.qubitpi.org/>Ostwind</a>, and to my former employer, Yahoo, who taught me to love
+software engineering and fundamentally influenced my tech career.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://ostwind.qubitpi.org style=color:grey>
+The contents of this website are © 2025 Ostwind (Jiaqi Liu) under the terms of the Apache License v2.
+</a>
+</div>
+</footer>
+<script src=https://ostwind.qubitpi.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

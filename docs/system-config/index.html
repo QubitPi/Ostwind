@@ -1,0 +1,179 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta content="IE=edge" http-equiv=x-ua-compatible>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<meta content name=description>
+<meta content name=author>
+<title>System Configuration</title>
+<link href=/favicon.ico rel=icon>
+<link href=https://ostwind.qubitpi.org/css/font-awesome.all.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/bootstrap.min.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/termynal.css rel=stylesheet>
+<link href=https://ostwind.qubitpi.org/css/ostwind-theme.css rel=stylesheet>
+<meta content="#da532c" name=msapplication-TileColor>
+<meta content="#ffffff" name=theme-color>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://ostwind.qubitpi.org> <img alt=Ostwind height=35 src=https://ostwind.qubitpi.org/images/logo.svg width=60></a>
+<a class="header-text navbar-brand" href=https://ostwind.qubitpi.org>Ostwind</a>
+<button aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation" class=navbar-toggler data-bs-target=#navbarSupportedContent data-bs-toggle=collapse type=button>
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=/Document id=navbarDropdown role=button>
+Documentation
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=/docs/intro>Getting Started</a></li>
+<li><a class=dropdown-item href=/docs/json-api>JSON API</a></li>
+<li><a class=dropdown-item href=/docs/graphql>GraphQL</a></li>
+<li><a class=dropdown-item href=/docs/filestore>File Stores</a></li>
+<li><a class=dropdown-item href=/docs/configuration>Configuration</a></li>
+<li><a class=dropdown-item href=/docs/system-config>System Configuration</a></li>
+<li><a class=dropdown-item href=/docs/monitoring-and-operations>Monitoring and Operations</a></li>
+<li><a class=dropdown-item href=/docs/logging>Logging Guidelines</a></li>
+<li><a class=dropdown-item href=/docs/kpi>Key Performance Indicators</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/docs/glossary>Glossary</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=https://ostwind.qubitpi.org/apidocs/ id=navbarDropdown role=button>
+API
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class=nav-link href=/general/downloads id=navbarDropdown role=button>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Contributor Guide
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/intro/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/di/>Dependency Injection</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/test/>Testing</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/metastore/>Meta Stores</a></li>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/development/local-swift/>Swift (Local)</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded=false class="nav-link dropdown-toggle" data-bs-toggle=dropdown href=# id=navbarDropdown role=button>
+Blogs
+</a>
+<ul aria-labelledby=navbarDropdown class=dropdown-menu>
+<li><a class=dropdown-item href=https://ostwind.qubitpi.org/blog/yahoo-object-storage/>Yahoo
+Cloud Object Store</a></li>
+</ul>
+</li>
+<li>
+<form action=/search class=search-bar method=get>
+<input class=search-input id=search-query name=q placeholder=Search... type=search>
+<button class=search-button type=submit>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<p>Ostwind has two main configuration avenues, the domain object configuration (File Store, Meta Store, and Data Fetchers)
+which happens via compiled Java code, and system configuration via properties. The domain configuration is
+covered elsewhere, and we&rsquo;ll only cover the system configuration infrastructure here.</p>
+<p>The system for property configuration that Ostwind uses lives in it&rsquo;s own <a href=https://github.com/QubitPi/Ostwind/tree/master/ostwind-system-config>sub-module</a>. This system
+is extensible and reusable so that other Ostwind modules, and even other projects, can leverage it for their own property
+config needs. That sub-module has it&rsquo;s own deep set of documentation, so we&rsquo;ll be focusing only on how to use it for
+configuring Ostwind.</p>
+<h2 id=configuration-sources-and-overrides>Configuration Sources and Overrides</h2>
+<p>Configuration for Ostwind modules come from only one location (that is, within the <a href=https://github.com/QubitPi/Ostwind/tree/master/ostwind-system-config>sub-module</a>
+itself) and allows for overriding other settings. This is particularly useful when overriding a property set in a module
+to turn off a feature, or to override a default configuration for your application in a certain environment, for
+example.</p>
+<p>Configuration sources are shown below, and are resolved in priority order, with higher-priority sources overriding
+settings from lower-priority sources. Sources that are files will available to Ostwind on the Classpath for them to be
+loaded.</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:center>Priority</th>
+<th style=text-align:center>Source</th>
+<th style=text-align:center>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:center>(High) 1</td>
+<td style=text-align:center>Environment variables</td>
+<td style=text-align:center></td>
+</tr>
+<tr>
+<td style=text-align:center>2</td>
+<td style=text-align:center>Java properties</td>
+<td style=text-align:center></td>
+</tr>
+<tr>
+<td style=text-align:center>3</td>
+<td style=text-align:center><code>userConfig.properties</code></td>
+<td style=text-align:center></td>
+</tr>
+<tr>
+<td style=text-align:center>5</td>
+<td style=text-align:center><code>applicationConfig.properties</code></td>
+<td style=text-align:center>Every application MUST provide one of these</td>
+</tr>
+</tbody>
+</table>
+<style>.admonition{border-radius:5px;padding:0;border-left:5px solid #00bcf6;box-shadow:0 0 .5rem .2rem #00000025}.admonition-title-container{background-color:#00bcf6;border-top-right-radius:5px}.admonition-title{font-weight:bolder;font-size:large;backdrop-filter:grayscale(50%)brightness(150%);-webkit-backdrop-filter:grayscale(50%)brightness(150%);padding:5px 0 5px 30px;border-top-right-radius:5px}@media(prefers-color-scheme:dark){.admonition-title{backdrop-filter:grayscale(40%)brightness(40%);-webkit-backdrop-filter:grayscale(40%)brightness(40%)}}.admonition-content{padding:10px 0 10px 15px}</style>
+<div class=admonition style="border-left:5px solid #0e8">
+<div class=admonition-title-container style=background-color:#0e8>
+<div class=admonition-title>
+Tip
+</div>
+</div>
+<div class=admonition-content>Since <code>userConfig.properties</code> is often used while developing to turn features on and off, <code>.gitignore</code> includes
+a rule to ignore this file by default to help prevent checking it in accidentally.</div>
+</div>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://qubitpi.org/>
+<img alt=QubitPi height=100% src=https://ostwind.qubitpi.org/images/logo.png width=100></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>
+My sincere thanks to <a href=https://github.com/yahoo/fili>yahoo/fili</a> &
+        <a href=https://github.com/yahoo/elide>yahoo/elide</a>, which
+gave tremendous amount of guidance on design and development of
+<a href=https://ostwind.qubitpi.org/>Ostwind</a>, and to my former employer, Yahoo, who taught me to love
+software engineering and fundamentally influenced my tech career.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://ostwind.qubitpi.org style=color:grey>
+The contents of this website are © 2025 Ostwind (Jiaqi Liu) under the terms of the Apache License v2.
+</a>
+</div>
+</footer>
+<script src=https://ostwind.qubitpi.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>
