@@ -39,5 +39,6 @@ theme = 'ostwind'
     localSwift = "/development/local-swift/"
 
     yahooObjectStorate = "/blog/yahoo-object-storage/"
+    amazonS3 = "/blog/aws-s3.html/"
 [outputs]
     home = ["HTML", "RSS", "JSON"]
